@@ -13,7 +13,7 @@ current_station = 0;
 vol = 40;
 btn_clk = RotaryEncoder(17, 27, bounce_time=float)
 btn_sw = Button(22)
-GODI = "ENTER STATION URL"
+GODI = "http://mbgwaf.de:8000/stream"
 DWG_DE = "https://server23644.streamplus.de/stream.mp3"
 DWG_RU = "https://server32349.streamplus.de/stream.mp3"
 SW_DE = "http://www.segenswelle.de:8000/deutsch"
@@ -29,11 +29,11 @@ announcements = ["godi.mp3", "dwg_de.mp3", "dwg_ru.mp3", "sw_de.mp3", "sw_pd.mp3
 #---------- DEFINITIONS ----------#
 def change_station():
     global current_station
-    timer.cancel
+    global timer
+    timer.cancel()
     print("changing station from " + str(current_station))
     current_station = (current_station + 1) % len(stations)  
     play(current_station)
-    
 
 def play(current_station):
     print(stations[current_station])
@@ -66,7 +66,9 @@ def connect_godi():
         sudo_mpc("add " + stations[current_station])
         sudo_mpc("add godi_ended.mp3")
         sudo_mpc("play")
-        
+
+timer=None
+
 def check_connection():
     try:
         response = urlopen("https://www.google.de")
