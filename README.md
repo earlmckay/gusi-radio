@@ -141,7 +141,7 @@ Clone the repository:
 
 Replace the original MPC config:
 
-    sudo mv /home/pi/gusi/mpd.conf /etc/
+    sudo mv /home/pi/gusi-radio/mpd.conf /etc/
 
 Update the MPC database
 
@@ -152,11 +152,11 @@ Update the MPC database
     crontab -e
 Insert following text at the bottom:
 
-    @reboot /home/pi/gusi/autostart.sh
+    @reboot /home/pi/gusi-radio/autostart.sh
 
 Make the script executable:
 
-    sudo chmod a+x /home/pi/gusi/autostart.sh
+    sudo chmod a+x /home/pi/gusi-radio/autostart.sh
   **8) Install Python 2.7 librarys**
 
     sudo apt-get install python-pip 
@@ -164,7 +164,7 @@ Make the script executable:
 
 Test if the python script runs without errors.
 
-    python /home/pi/gusi/gusi.py
+    python /home/pi/gusi-radio/gusi.py
 
   **8) Optimization**
 Deaktivate swapping:
