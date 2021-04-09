@@ -1,5 +1,6 @@
 
 
+
 # gusi-radio
 
 GuSi – the user friendly internet radio
@@ -137,14 +138,16 @@ Insert following text:
   **6) Install GuSi**
 Clone the repository: 
 
+    sudo apt install git
     git clone https://github.com/earlmckay/gusi-radio
 
 Replace the original MPC config:
 
     sudo mv /home/pi/gusi-radio/mpd.conf /etc/
 
-Update the MPC database
+Reboot and update the MPC database
 
+    sudo reboot
     sudo mpc update
 
   **7) Set up autostart**
@@ -177,3 +180,4 @@ Deactivate some unused modules
 
     sudo systemctl disable keyboard-setup.service
     sudo systemctl disable triggerhappy.service
+    sudo reboot
