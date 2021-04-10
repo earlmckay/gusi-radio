@@ -255,6 +255,8 @@ Connect the cable ends to the Raspberry.
 | LED + | 8 | 14 |
 | LED GND | 20 |
 
+![](images/routing.jpg)
+
 Insert the bass reflex tube into the hole on the the back.
 ![](images/step_6.jpg)
 
