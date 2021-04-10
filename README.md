@@ -226,7 +226,7 @@ Reboot the device
 ## Hardware installation
 
 Solder the micro USB cable to the power socket and screw it into the case. Also the raspberry. 
-![](images/step_1.jpg)
+![](images/spet_1.jpg)
 
 Screw the speaker to the mount, solder the cables to it and connect it to the amplifier.
 ![](images/step_2.jpg)
