@@ -62,7 +62,9 @@ Open the *wpa_supplicant.conf*  and enter the WiFi access data there.
 
   **3) SSH Connection**
 Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
+
 `ssh pi@192.168.1.100`
+
 The default login data are "pi" and "raspberry"
 
 ------------
@@ -70,15 +72,19 @@ The default login data are "pi" and "raspberry"
 
   **4) Raspberry Configuration**
 Change device name:
+
 `hostnamectl set-hostname 'GuSi'`
 
 Change password:
+
 `passwd`
 
 Change time zone:
+
 `sudo timedatectl set-timezone Europe/Berlin`
 
 These settings can also be made via the Raspi-Config:
+
 `sudo raspi-config`
 
 > System Options > S4 Hostename > "GuSi" 
@@ -90,6 +96,7 @@ Localisation Options > L4 WLAN Country > DE Germany
 
   **5) Set up Hifiberry**
 Set Hifiberry as default audio device
+
 `sudo nano /etc/asound.conf`
 
 Insert following text:
@@ -106,6 +113,7 @@ Insert following text:
     }
 ```
 For devices with an headphone jack:
+
 `sudo nano /etc/modprobe.d/alsa-blacklist.conf`
 
 Insert following text:
@@ -117,6 +125,7 @@ blacklist snd_bcm2835
 
 
   **6) Install Music Player Deamon**
+  
 `sudo apt-get update`
 
 `sudo apt-get upgrade`
@@ -124,6 +133,7 @@ blacklist snd_bcm2835
 `sudo apt-get install mpd mpc alsa-utils`
 
 Improve stability:
+
 `sudo nano /etc/modprobe.d/8192cu.conf`
 
 Insert following text:
@@ -139,18 +149,23 @@ rtw_ips_mode=1
   **6) Install GuSi**
 
 Install git:
+
 `sudo apt install git`
 
 Clone the repository:
+
 `git clone https://github.com/earlmckay/gusi-radio`
 
 Replace the original MPC config:
+
 `sudo mv /home/pi/gusi-radio/mpd.conf /etc/`
 
 Reboot the device
+
 `sudo reboot`
 
 Update the Music player database
+
 `sudo mpc update`
 
 ------------
@@ -166,6 +181,7 @@ Insert following text at the bottom:
 ```
 
 Make the script executable:
+
 `sudo chmod a+x /home/pi/gusi-radio/autostart.sh`
 
 ------------
@@ -188,16 +204,21 @@ Test if the python script runs without errors.
 
   **8) Optimization**
 Deaktivate swapping:
+
 `sudo systemctl stop dphys-swapfile`
 
 `sudo systemctl disable dphys-swapfile`
 
 Deactivate some unused modules:
+
 `sudo systemctl disable keyboard-setup.service`
+
 `sudo systemctl disable triggerhappy.service`
+
 `sudo /usr/bin/tvservice -o`
 
 Reboot the device
+
 `sudo reboot`
 
 ------------
