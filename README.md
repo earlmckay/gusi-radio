@@ -228,7 +228,7 @@ Reboot the device
 ## Hardware installation
 
 Solder the micro USB cable to the power socket and screw it into the case. Also the raspberry. 
-![](images/spet_1.jpg)
+![](images/step_1.jpg)
 
 Screw the speaker to the mount, solder the cables to it and connect it to the amplifier.
 ![](images/step_2.jpg)
@@ -241,6 +241,19 @@ Screw the rotary encoder and the pushbutton into the housing. Slide the speaker 
 
 Insert the LED into the hole. You can fix this with hot glue.
 ![](images/step_5.jpg)
+
+Connect the cable ends to the Raspberry. 
+| Pin | Physical | BCM |
+| :------------ | :------------: | :------------: |
+| Rotary CLK | 11 | 17 |
+| Rotary DT | 13 | 27 |
+| Rotary SW | 15 | 22 |
+| Rotary 3V | 17 |
+| Rotary GND | 14 |
+| Power | 5 | 3 |
+| Power | 9 |
+| LED + | 8 | 14 |
+| LED GND | 20 |
 
 Insert the bass reflex tube into the hole on the the back.
 ![](images/step_6.jpg)
