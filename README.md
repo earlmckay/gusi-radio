@@ -262,3 +262,6 @@ Insert the bass reflex tube into the hole on the the back.
 
 Close the housing and screw it with 4 screws.
 ![](images/step_7.jpg)
+
+------------
+Finally, I would like to thank [Robert Nickel](https://github.com/Robert-Nickel) for his support, as well to [Notification Sounds](https://notificationsounds.com/) for providing the sounds.
