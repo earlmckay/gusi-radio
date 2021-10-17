@@ -11,7 +11,7 @@ from urllib2 import URLError, HTTPError
 #---------- VAR DEFINITION ----------#
 current_station = 0;
 vol = 40;
-btn_clk = RotaryEncoder(17, 27, bounce_time=float)
+btn_clk = RotaryEncoder(23, 27, bounce_time=float)
 btn_sw = Button(22)
 GODI = "http://mbgwaf.de:8000/stream"
 DWG_DE = "https://server23644.streamplus.de/stream.mp3"
