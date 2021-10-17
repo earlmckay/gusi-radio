@@ -96,7 +96,13 @@ Localisation Options > L4 WLAN Country > DE Germany
 
 ------------
 
-  **5) Set up Hifiberry**
+  **5) Install SHIM OnOFF**
+
+`curl https://get.pimoroni.com/onoffshim | bash`
+
+------------
+
+  **6) Set up Hifiberry**
 Set Hifiberry as default audio device
 
 `sudo nano /etc/asound.conf`
@@ -126,7 +132,7 @@ blacklist snd_bcm2835
 ------------
 
 
-  **6) Install Music Player Deamon**
+  **7) Install Music Player Deamon**
   
 `sudo apt-get update`
 
@@ -148,7 +154,7 @@ rtw_ips_mode=1
 
 ------------
 
-  **6) Install GuSi**
+  **8) Install GuSi**
 
 Install git:
 
@@ -173,7 +179,7 @@ Update the Music player database
 ------------
 
 
-  **7) Set up autostart**
+  **9) Set up autostart**
 
 `crontab -e`
 
@@ -189,7 +195,7 @@ Make the script executable:
 ------------
 
 
-  **8) Install Python 2.7 librarys**
+  **10) Install Python 2.7 librarys**
 
 `sudo apt-get install python-pip`
 
@@ -204,7 +210,7 @@ Test if the python script runs without errors.
 ------------
 
 
-  **8) Optimization**
+  **11) Optimization**
 Deaktivate swapping:
 
 `sudo systemctl stop dphys-swapfile`
