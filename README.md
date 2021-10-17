@@ -109,16 +109,16 @@ Set Hifiberry as default audio device
 
 Insert following text:
 ```
-    pcm.hifiberryMiniAmp {
-        type softvol
-        slave.pcm "plughw:0"
-        control.name "Master"
-        control.card 0
-    }
-    pcm.!default {
-        type       plug
-        slave.pcm  "hifiberryMiniAmp"
-    }
+pcm.hifiberryMiniAmp {
+    type softvol
+    slave.pcm "plughw:0"
+    control.name "Master"
+    control.card 0
+}
+pcm.!default {
+    type       plug
+    slave.pcm  "hifiberryMiniAmp"
+}
 ```
 For devices with an headphone jack:
 
