@@ -29,8 +29,8 @@ announcements = ["godi.mp3", "dwg_de.mp3", "dwg_ru.mp3", "sw_de.mp3", "sw_pd.mp3
 #---------- DEFINITIONS ----------#
 def change_station():
     global current_station
-    global timer
-    timer.cancel()
+    if timer is not None:
+        timer.cancel()
     print("changing station from " + str(current_station))
     current_station = (current_station + 1) % len(stations)  
     play(current_station)
