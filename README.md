@@ -200,6 +200,8 @@ Make the script executable:
 `sudo apt-get install python-pip`
 
 `sudo pip install gpiozero`
+If the installation is not working properly, you can also try the following code:
+`sudo apt install python-gpiozero`
 
 Customize the channel list according to your needs. For this you only need to change the URLs in the variables.
 
