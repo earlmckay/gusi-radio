@@ -168,6 +168,10 @@ Replace the original MPC config:
 
 `sudo mv /home/pi/gusi-radio/mpd.conf /etc/`
 
+Replace the original cleanshutd Config:
+
+`sudo mv /home/pi/gusi-radio/mpd.conf /etc/`
+
 Reboot the device
 
 `sudo reboot`
