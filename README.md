@@ -192,9 +192,10 @@ Insert following text at the bottom:
 @reboot /home/pi/gusi-radio/autostart.sh
 ```
 
-Make the script executable:
+Make the scripts executable:
 
 `sudo chmod a+x /home/pi/gusi-radio/autostart.sh`
+`chmod a+x /home/pi/gusi-radio/auto_wps.py`
 
 ------------
 
