@@ -5,8 +5,8 @@ from gpiozero import Button
 from gpiozero import RotaryEncoder
 from signal import pause
 from subprocess import check_call
-from urllib2 import Request, urlopen
-from urllib2 import URLError, HTTPError
+import urllib
+from urllib.request import Request, urlopen
 
 #---------- VAR DEFINITION ----------#
 current_station = 0;
@@ -29,10 +29,11 @@ announcements = ["godi.mp3", "dwg_de.mp3", "dwg_ru.mp3", "sw_de.mp3", "sw_pd.mp3
 #---------- DEFINITIONS ----------#
 def change_station():
     global current_station
+    global timer
     if timer is not None:
         timer.cancel()
     print("changing station from " + str(current_station))
-    current_station = (current_station + 1) % len(stations)  
+    current_station = (current_station + 1) % len(stations)
     play(current_station)
 
 def play(current_station):
@@ -42,11 +43,11 @@ def play(current_station):
     sudo_mpc("add " + announcements[current_station])
     if current_station == 0:
         sudo_mpc("add godi_offline.mp3")
-        connect_godi()  
+        connect_godi()
     else:
         sudo_mpc("add " + stations[current_station])
         sudo_mpc("play")
- 
+
 def connect_godi():
     global timer
     try:
@@ -57,7 +58,7 @@ def connect_godi():
         sudo_mpc("play")
         #IN CASE OF TREAD PROBLEMS LOOK HERE#
         timer = threading.Timer(60, connect_godi)
-        timer.start()  
+        timer.start()
     else:
         print('Godi ist online')
         sudo_mpc("clear")
@@ -74,31 +75,32 @@ def check_connection():
         response = urlopen("https://www.google.de")
     except:
         print('OFFLINE')
+        sudo_mpc("clear")
+        sudo_mpc("repeat off")
         sudo_mpc("add no_connection.mp3")
         sudo_mpc("add wps_client.mp3")
         sudo_mpc("play")
-        time.sleep(10)
-        btn_sw.wait_for_press(timeout=10)
+        #time.sleep(6)
+        btn_sw.wait_for_press(timeout=30)
         if btn_sw.is_pressed:
             sudo_mpc("clear")
-            sudo_mpc("repeat off")
             sudo_mpc("add wps_router.mp3")
             sudo_mpc("play")
-            time.sleep(13)
-            os.system("sudo python /home/pi/gusi/auto_wps.py")   
+            time.sleep(6)
+            os.system("sudo python /home/pi/gusi-radio/auto_wps.py")
+            quit()
         else:
             sudo_mpc("clear")
-            sudo_mpc("repeat on")
             sudo_mpc("add problem.mp3")
             sudo_mpc("play")
-            time.sleep(15)
-            os.system("sudo python /home/pi/gusi/gusi.py")
+            time.sleep(20)
+            quit()
     else:
         print('ONLINE')
 
 def sudo_mpc(command):
     os.system("sudo mpc " + command)
-    
+
 def vol_up():
     global vol
     vol += 5
@@ -109,15 +111,15 @@ def vol_down():
     global vol
     vol -= 5
     print(str(vol))
-    sudo_mpc("volume " + str(vol)) 
- 
+    sudo_mpc("volume " + str(vol))
+
 #---------- START ----------#
 sudo_mpc("clear")
 sudo_mpc("volume 40")
 sudo_mpc("repeat off")
 check_connection()
 play(current_station)
- 
+
 btn_clk.when_rotated_clockwise = vol_up
 btn_clk.when_rotated_counter_clockwise = vol_down
 btn_sw.when_pressed = change_station
