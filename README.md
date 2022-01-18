@@ -170,7 +170,7 @@ Replace the original MPC config:
 
 Replace the original cleanshutd Config:
 
-`sudo mv /home/pi/gusi-radio/mpd.conf /etc/`
+`sudo mv /home/pi/gusi-radio/cleanshutd.conf /etc/`
 
 Reboot the device
 
@@ -195,7 +195,7 @@ Insert following text at the bottom:
 Make the scripts executable:
 
 `sudo chmod a+x /home/pi/gusi-radio/autostart.sh`
-`chmod a+x /home/pi/gusi-radio/auto_wps.py`
+`sudo chmod a+x /home/pi/gusi-radio/auto_wps.py`
 
 ------------
 
@@ -203,8 +203,10 @@ Make the scripts executable:
   **10) Install Python 2.7 librarys**
 
 `sudo apt-get install python-pip`
+NEW!! `sudo apt-get install python3-pip`
 
 `sudo pip install gpiozero`
+NEW!! `sudo apt install python3-gpiozero`
 If the installation is not working properly, you can also try the following code:
 `sudo apt install python-gpiozero`
 
@@ -212,7 +214,7 @@ Customize the channel list according to your needs. For this you only need to ch
 
 Test if the python script runs without errors.
 
-`python /home/pi/gusi-radio/gusi.py`
+`python3 /home/pi/gusi-radio/gusi.py`
 
 ------------
 
