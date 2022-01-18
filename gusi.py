@@ -13,7 +13,7 @@ current_station = 0;
 vol = 40;
 btn_clk = RotaryEncoder(23, 27, bounce_time=float)
 btn_sw = Button(22)
-GODI = "http://mbgwaf.de:8000/stream"
+GODI = "http://YOUR-CUSTOM-STREAM"
 DWG_DE = "https://server23644.streamplus.de/stream.mp3"
 DWG_RU = "https://server32349.streamplus.de/stream.mp3"
 SW_DE = "http://www.segenswelle.de:8000/deutsch"
@@ -51,7 +51,7 @@ def play(current_station):
 def connect_godi():
     global timer
     try:
-        response = urlopen("http://mbgwaf.de:8000/stream")
+        response = urlopen("http://YOUR-CUSTOM-STREAM")
     except:
         print('Godi ist offline')
         sudo_mpc("repeat on")
@@ -71,30 +71,38 @@ def connect_godi():
 timer=None
 
 def check_connection():
+
+    offline_count = 1
+
     try:
         response = urlopen("https://www.google.de")
     except:
-        print('OFFLINE')
-        sudo_mpc("clear")
-        sudo_mpc("repeat off")
-        sudo_mpc("add no_connection.mp3")
-        sudo_mpc("add wps_client.mp3")
-        sudo_mpc("play")
-        #time.sleep(6)
-        btn_sw.wait_for_press(timeout=30)
-        if btn_sw.is_pressed:
-            sudo_mpc("clear")
-            sudo_mpc("add wps_router.mp3")
-            sudo_mpc("play")
-            time.sleep(6)
-            os.system("sudo python /home/pi/gusi-radio/auto_wps.py")
-            quit()
+        while offline_count < 4:
+            print("Ckeck connection " , offline_count)
+            time.sleep(10)
+            offline_count += 1
         else:
+            print('OFFLINE')
             sudo_mpc("clear")
-            sudo_mpc("add problem.mp3")
+            sudo_mpc("repeat off")
+            sudo_mpc("add no_connection.mp3")
+            sudo_mpc("add wps_client.mp3")
             sudo_mpc("play")
-            time.sleep(20)
-            quit()
+            #time.sleep(6)
+            btn_sw.wait_for_press(timeout=30)
+            if btn_sw.is_pressed:
+                sudo_mpc("clear")
+                sudo_mpc("add wps_router.mp3")
+                sudo_mpc("play")
+                time.sleep(6)
+                os.system("sudo python3 /home/pi/gusi-radio/auto_wps.py")
+                quit()
+            else:
+                sudo_mpc("clear")
+                sudo_mpc("add problem.mp3")
+                sudo_mpc("play")
+                time.sleep(10)
+                quit()
     else:
         print('ONLINE')
 
