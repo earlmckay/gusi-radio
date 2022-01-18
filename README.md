@@ -30,7 +30,7 @@ The GuSi radio is a very user-friendly internet radio with only two buttons. It 
 
 80% of the components can be purchased from reichelt.de (Preconfigured shopping cart: [Gusi Radio](https://www.reichelt.de/my/1832192 "Gusi Radio")). The screws, the GPIO edge and the Rotary Encoder are not available there.
 
-The 3D data can be downloaded [here](https://www.thingiverse.com/thing:4823464 "Thingiverse").
+The 3D files can be downloaded [here](https://www.thingiverse.com/thing:5206074 "Thingiverse").
 
 ------------
 
