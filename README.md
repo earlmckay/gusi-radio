@@ -226,41 +226,114 @@ Reboot the device
 
 ## Hardware installation
 
-Solder the micro USB cable to the power socket and screw it into the case. Also the raspberry. 
-![](images/step_1.jpg)
+  **01) Prepare Cable**
+Following cable lengths are required:
+- Loudspeaker: 2 x 120 mm
+- Rotary encoder: 5 x 200 mm
+- Pushbutton: 2 x 200 mm
+- OnOff SHIM: 2 x 100 mm
+- LED: 2 x 160 mm
 
-Screw the speaker to the mount, solder the cables to it and connect it to the amplifier.
-![](images/step_2.jpg)
+Insulate both ends by approx. 3 mm.
 
-Solder cables to the push button, rotary encoder and the LED. Between LED and cable is the resistor.
-![](images/step_3.jpg)
+------------
 
-Screw the rotary encoder and the pushbutton into the housing. Slide the speaker holder into the slot.
-![](images/step_4.jpg)
+  **02) rotary encoder**
+The Rotary Encoder has a total of 5 pins:
+- GRD: Ground
+- +: voltage
+- SW: Push
+- CLK: Primary rotation
+- DT: Phase shifted rotation 
 
-Insert the LED into the hole. You can fix this with hot glue.
-![](images/step_5.jpg)
+Crimp the 5 prepared cables with a female Dupon connector on each side and connect the cables to the Rotary Encoder.
 
-Connect the cable ends to the Raspberry. 
-| Pin | Physical | BCM |
-| :------------ | :------------: | :------------: |
-| Rotary CLK | 11 | 17 |
-| Rotary DT | 13 | 27 |
-| Rotary SW | 15 | 22 |
-| Rotary 3V | 17 |
-| Rotary GND | 14 |
-| Power | 5 | 3 |
-| Power | 9 |
-| LED + | 8 | 14 |
-| LED GND | 20 |
+![](images/install_rotary_encoder_cable.jpg)
 
-![](images/routing.jpg)
+------------
 
-Insert the bass reflex tube into the hole on the the back.
-![](images/step_6.jpg)
 
-Close the housing and screw it with 4 screws.
-![](images/step_7.jpg)
+  **03) prepare the pushbutton**
+
+For the pushbutton, one part of the cables must be soldered to the button, the other ends get a female Dupon connector.
+Crimp the 5 prepared cables with a female Dupon connector on each side and connect the cables to the Rotary Encoder.
+
+![](images/install_button_cable.jpg)
+
+------------
+
+  **04) insert the rotary control and the button**
+
+Now you can screw the rotary encoder into the middle hole of the case. Make sure that it sits straight, otherwise the knob will wobble.
+The push button is inserted into the outside of the case. It should snap into place. 
+
+![](images/install_buttons.jpg)
+
+------------
+
+  **05) power supply**
+
+Before you insert the power socket, solder the cables first. This is more comfortable and avoids damaging the plastic housing. 
+Seen from the back, the positive pole is on the left and the negative pole on top.
+
+Now you can solder the cables to the micro USB connector. 
+The left contact is the positive pole, the one on the right side is the negative pole (see picture).
+
+![](images/install_power_cable.jpg)
+![](images/install_power_input.jpg)
+
+------------
+
+  **06) loudspeaker**
+
+First the easy part. Solder two cables to the two speaker contacts. 
+The other ends of the cables do not need to be worked on, as they will be clamped into the amplifier later. 
+
+Before you screw in the speaker, the speaker grille must be inserted first. Make sure that the holes are exactly aligned with those in the housing.
+Now place the speaker in the cabinet on the grille and fix it with the 6 mm screws.
+
+![](images/install_speaker.jpg)
+
+------------
+
+  **07) LED**
+
+For the LED you need the two prepared cables and two female Dupon connectors, which are crimped on one side of the cable. 
+The other sides have to be soldered to the LED itself. I used here for the anode (longer pin of the LED) the red cable and for the shorter side (cathode) the black cable. To avoid a short circuit, a heat shrink tube can be used.
+Now push the LED into the holder.
+
+![](images/install_led_cable.jpg)
+
+------------
+
+  **08) SHIM OnOff**
+
+
+The board comes with optional female connectors, which I also used. For the two button contacts I cut and soldered two male Dupon connectors.
+The pre-assembled cables can now be equipped with a male Dupon connector on one end and a female connector on the other end. 
+
+![](images/install_shim_onoff.jpg)
+![](images/install_shim_onoff_cable.jpg)
+
+------------
+
+  **09) Connection**
+
+First, the Raspberry can be screwed to the lower base plate.
+Then the GPIO corner adapter can be plugged on, followed by the MiniAmp.
+
+Then everything can be connected one by one.
+
+1) Rotary Encoder to Raspberry
+2) SHIM OnOff with Raspberry
+3) Pushbutton with SHIM OnOff
+4) LED with Raspberry
+5) Power supply with SHIM On Off
+6) Speaker with MiniAmp
+
+![](images/gpio_sheet.png)
+![](images/GuSi_fzz.png)
+![](images/install_components_together.jpg)
 
 ------------
 Finally, I would like to thank [Robert Nickel](https://github.com/Robert-Nickel) for his support, as well to [Notification Sounds](https://notificationsounds.com/) for providing the sounds.
