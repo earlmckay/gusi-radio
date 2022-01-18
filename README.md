@@ -313,7 +313,6 @@ Now push the LED into the holder.
 The board comes with optional female connectors, which I also used. For the two button contacts I cut and soldered two male Dupon connectors.
 The pre-assembled cables can now be equipped with a male Dupon connector on one end and a female connector on the other end. 
 
-![](images/install_shim_onoff.jpg)
 ![](images/install_shim_onoff_cable.jpg)
 
 ------------
