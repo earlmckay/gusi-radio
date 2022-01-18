@@ -177,6 +177,7 @@ Insert following text at the bottom:
 Make the scripts executable:
 
 `sudo chmod a+x /home/pi/gusi-radio/autostart.sh`
+
 `sudo chmod a+x /home/pi/gusi-radio/auto_wps.py`
 
 ------------
