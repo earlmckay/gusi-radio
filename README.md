@@ -209,15 +209,21 @@ Customize language:
 For German announcements:
 
 `sudo mv /home/pi/gusi-radio/music/DE/* /home/pi/gusi-radio/music/`
+
 `sudo rm -r /home/pi/gusi-radio/music/DE`
+
 `sudo rm -r /home/pi/gusi-radio/music/EN`
+
 `sudo mpc update`
 
 For English announcements:
 
 `sudo mv /home/pi/gusi-radio/music/EN/* /home/pi/gusi-radio/music/`
+
 `sudo rm -r /home/pi/gusi-radio/music/EN`
+
 `sudo rm -r /home/pi/gusi-radio/music/DE`
+
 `sudo mpc update`
 
 You can test the script by running it with the command:
