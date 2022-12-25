@@ -194,7 +194,7 @@ sudo apt-get install python3-pip`
 
   **11) Customize the Code**
 
-sudo nano /home/pi/gusi-radio/gusi.py`
+`sudo nano /home/pi/gusi-radio/gusi.py`
 
 Customize radio station:
 
