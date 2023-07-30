@@ -51,8 +51,22 @@ Settings (Gear icon)
 
 Click on "save" and then on "write" to start the installation.
 
-  **2) Prepare the SD-Card**
-After the installation, open the SD card and open the *config.txt* with an editor. Add the following lines at the bottom:
+------------
+
+  **2) SSH Connection**
+Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
+
+`ssh gusi@192.168.1.100`
+
+------------
+
+
+  **3) Edit the Config**
+After successful login, edit the config.txt file. 
+
+`sudo nano /boot/config.txt`
+
+Add the following lines at the bottom.
 
 ```
  ################## GUSI ################
@@ -65,13 +79,6 @@ dtoverlay=hifiberry-dac
 
 ------------
 
-
-  **3) SSH Connection**
-Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
-
-`ssh gusi@192.168.1.100`
-
-------------
 
   **4) Install SHIM OnOFF**
 
