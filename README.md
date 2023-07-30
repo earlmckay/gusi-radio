@@ -39,24 +39,29 @@ The 3D files can be downloaded [here](https://www.thingiverse.com/thing:5206074 
  **1) Install the OS**
  Install Raspberry Pi OS lite on the SD card. You can use the tool [Raspberry Pi imager](https://www.raspberrypi.org/software/ "Raspberry Pi imager") for this.
 
+Operating system: 
+- Raspberry Pi OS Lite (32-Bit)
+
+Settings (Gear icon)
+- Hostname: GuSi
+- activate SSH: use password
+- user and password: "gusi" and a good a strong password 
+- Set up WIFI: Enter the WLAN login data here
+- Select your WiFi and Time Location an Keyboard language
+
+Click on "save" and then on "write" to start the installation.
+
   **2) Prepare the SD-Card**
-After the installation, open the SD card (should be labeled as "boot") and copy the files from the folder "sd-card" to the card.
-- *ssh* (allows to connect via ssh)
-- *wpa_supplicant.conf* (WiFi connection)
+After the installation, open the SD card and open the *config.txt* with an editor. Add the following lines at the bottom:
 
-
-Open the *config.txt* with an editor. Add the following code at the bottom:
 ```
  ################## GUSI ################
-# Disable Bluetooth`
+# Disable Bluetooth
 dtoverlay=pi3-disable-bt
-# Power On/Off Button
-dtoverlay=gpio-shutdown,gpio_pin=3, active_low=1,gpio_pull=up
+
 # Enable Hifiberry Soundcard
 dtoverlay=hifiberry-dac
 ```
-
-Open the *wpa_supplicant.conf*  and enter the WiFi access data there.
 
 ------------
 
@@ -64,35 +69,17 @@ Open the *wpa_supplicant.conf*  and enter the WiFi access data there.
   **3) SSH Connection**
 Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
 
-`ssh pi@192.168.1.100`
-
-The default login data are "pi" and "raspberry"
+`ssh gusi@192.168.1.100`
 
 ------------
 
-
-  **4) Raspberry Configuration**
-Change device name:
-
-`hostnamectl set-hostname 'GuSi'`
-
-Change password:
-
-`passwd`
-
-Change time zone:
-
-`sudo timedatectl set-timezone Europe/Berlin`
-
-------------
-
-  **5) Install SHIM OnOFF**
+  **4) Install SHIM OnOFF**
 
 `curl https://get.pimoroni.com/onoffshim | bash`
 
 ------------
 
-  **6) Set up Hifiberry**
+  **5) Set up Hifiberry**
 Set Hifiberry as default audio device
 
 `sudo nano /etc/asound.conf`
@@ -114,7 +101,7 @@ pcm.!default {
 ------------
 
 
-  **7) Install Music Player Deamon**
+  **6) Install Music Player Deamon**
   
 `sudo apt-get update`
 
@@ -136,7 +123,7 @@ rtw_ips_mode=1
 
 ------------
 
-  **8) Install GuSi**
+  **7) Install GuSi**
 
 Install git:
 
@@ -158,14 +145,10 @@ Reboot the device
 
 `sudo reboot`
 
-Update the Music player database
-
-`sudo mpc update`
-
 ------------
 
 
-  **9) Set up autostart**
+  **8) Set up autostart**
 
 `crontab -e`
 
@@ -183,7 +166,7 @@ Make the scripts executable:
 ------------
 
 
-  **10) Install Python 3 librarys**
+  **9) Install Python 3 librarys**
 
 sudo apt-get install python3-pip`
 
@@ -192,7 +175,7 @@ sudo apt-get install python3-pip`
 
 ------------
 
-  **11) Customize the Code**
+  **10) Customize the Code**
 
 `sudo nano /home/pi/gusi-radio/gusi.py`
 
@@ -208,21 +191,21 @@ Customize language:
 
 For German announcements:
 
-`sudo mv /home/pi/gusi-radio/music/DE/* /home/pi/gusi-radio/music/`
+`sudo mv /home/pi/gusi-radio/announcements/DE/* /home/pi/gusi-radio/announcements/`
 
-`sudo rm -r /home/pi/gusi-radio/music/DE`
+`sudo rm -r /home/pi/gusi-radio/announcements/DE`
 
-`sudo rm -r /home/pi/gusi-radio/music/EN`
+`sudo rm -r /home/pi/gusi-radio/announcements/EN`
 
 `sudo mpc update`
 
 For English announcements:
 
-`sudo mv /home/pi/gusi-radio/music/EN/* /home/pi/gusi-radio/music/`
+`sudo mv /home/pi/gusi-radio/announcements/EN/* /home/pi/gusi-radio/announcements/`
 
-`sudo rm -r /home/pi/gusi-radio/music/EN`
+`sudo rm -r /home/pi/gusi-radio/announcements/EN`
 
-`sudo rm -r /home/pi/gusi-radio/music/DE`
+`sudo rm -r /home/pi/gusi-radio/announcements/DE`
 
 `sudo mpc update`
 
@@ -233,7 +216,7 @@ You can test the script by running it with the command:
 ------------
 
 
-  **12) Optimization**
+  **11) Optimization**
 Deaktivate swapping:
 
 `sudo systemctl stop dphys-swapfile`
