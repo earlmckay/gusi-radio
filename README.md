@@ -56,7 +56,7 @@ Click on "save" and then on "write" to start the installation.
   **2) SSH Connection**
 Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
 
-`ssh gusi@192.168.1.100`
+```ssh gusi@192.168.1.100```
 
 ------------
 
@@ -64,7 +64,7 @@ Insert the card into the Raspberry and let it boot up. Find out which IP address
   **3) Edit the Config**
 After successful login, edit the config.txt file. 
 
-`sudo nano /boot/config.txt`
+```sudo nano /boot/config.txt```
 
 Add the following lines at the bottom.
 
@@ -82,14 +82,14 @@ dtoverlay=hifiberry-dac
 
   **4) Install SHIM OnOFF**
 
-`curl https://get.pimoroni.com/onoffshim | bash`
+```curl https://get.pimoroni.com/onoffshim | bash```
 
 ------------
 
   **5) Set up Hifiberry**
 Set Hifiberry as default audio device
 
-`sudo nano /etc/asound.conf`
+```sudo nano /etc/asound.conf```
 
 Insert following text:
 ```
@@ -110,15 +110,15 @@ pcm.!default {
 
   **6) Install Music Player Deamon**
   
-`sudo apt-get update`
+```sudo apt-get update```
 
-`sudo apt-get upgrade`
+```sudo apt-get upgrade```
 
-`sudo apt-get install mpd mpc alsa-utils`
+```sudo apt-get install mpd mpc alsa-utils```
 
 Improve stability:
 
-`sudo nano /etc/modprobe.d/8192cu.conf`
+```sudo nano /etc/modprobe.d/8192cu.conf```
 
 Insert following text:
 ```
@@ -134,30 +134,30 @@ rtw_ips_mode=1
 
 Install git:
 
-`sudo apt install git`
+```sudo apt install git```
 
 Clone the repository:
 
-`git clone https://github.com/earlmckay/gusi-radio`
+```git clone https://github.com/earlmckay/gusi-radio```
 
 Replace the original MPC config:
 
-`sudo mv /home/pi/gusi-radio/mpd.conf /etc/`
+```sudo mv /home/pi/gusi-radio/mpd.conf /etc/```
 
 Replace the original cleanshutd Config:
 
-`sudo mv /home/pi/gusi-radio/cleanshutd.conf /etc/`
+```sudo mv /home/pi/gusi-radio/cleanshutd.conf /etc/```
 
 Reboot the device
 
-`sudo reboot`
+```sudo reboot```
 
 ------------
 
 
   **8) Set up autostart**
 
-`crontab -e`
+```crontab -e```
 
 Insert following text at the bottom:
 ```
@@ -166,25 +166,25 @@ Insert following text at the bottom:
 
 Make the scripts executable:
 
-`sudo chmod a+x /home/pi/gusi-radio/autostart.sh`
+```sudo chmod a+x /home/pi/gusi-radio/autostart.sh```
 
-`sudo chmod a+x /home/pi/gusi-radio/auto_wps.py`
+```sudo chmod a+x /home/pi/gusi-radio/auto_wps.py```
 
 ------------
 
 
   **9) Install Python 3 librarys**
 
-sudo apt-get install python3-pip`
+```sudo apt-get install python3-pip```
 
-`sudo apt install python3-gpiozero`
+```sudo apt install python3-gpiozero```
 
 
 ------------
 
   **10) Customize the Code**
 
-`sudo nano /home/pi/gusi-radio/gusi.py`
+```sudo nano /home/pi/gusi-radio/gusi.py```
 
 Customize radio station:
 
@@ -198,27 +198,27 @@ Customize language:
 
 For German announcements:
 
-`sudo mv /home/pi/gusi-radio/announcements/DE/* /home/pi/gusi-radio/announcements/`
+```sudo mv /home/pi/gusi-radio/announcements/DE/* /home/pi/gusi-radio/announcements/```
 
-`sudo rm -r /home/pi/gusi-radio/announcements/DE`
+```sudo rm -r /home/pi/gusi-radio/announcements/DE```
 
-`sudo rm -r /home/pi/gusi-radio/announcements/EN`
+```sudo rm -r /home/pi/gusi-radio/announcements/EN```
 
-`sudo mpc update`
+```sudo mpc update```
 
 For English announcements:
 
-`sudo mv /home/pi/gusi-radio/announcements/EN/* /home/pi/gusi-radio/announcements/`
+```sudo mv /home/pi/gusi-radio/announcements/EN/* /home/pi/gusi-radio/announcements/```
 
-`sudo rm -r /home/pi/gusi-radio/announcements/EN`
+```sudo rm -r /home/pi/gusi-radio/announcements/EN```
 
-`sudo rm -r /home/pi/gusi-radio/announcements/DE`
+```sudo rm -r /home/pi/gusi-radio/announcements/DE```
 
-`sudo mpc update`
+```sudo mpc update```
 
 You can test the script by running it with the command:
 
-`python3 /home/pi/gusi-radio/gusi.py`
+```python3 /home/pi/gusi-radio/gusi.py```
 
 ------------
 
@@ -226,21 +226,21 @@ You can test the script by running it with the command:
   **11) Optimization**
 Deaktivate swapping:
 
-`sudo systemctl stop dphys-swapfile`
+```sudo systemctl stop dphys-swapfile```
 
-`sudo systemctl disable dphys-swapfile`
+```sudo systemctl disable dphys-swapfile```
 
 Deactivate some unused modules:
 
-`sudo systemctl disable keyboard-setup.service`
+```sudo systemctl disable keyboard-setup.service```
 
-`sudo systemctl disable triggerhappy.service`
+```sudo systemctl disable triggerhappy.service```
 
-`sudo /usr/bin/tvservice -o`
+```sudo /usr/bin/tvservice -o```
 
 Reboot the device
 
-`sudo reboot`
+```sudo reboot```
 
 ------------
 
