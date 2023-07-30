@@ -1,3 +1,4 @@
 images/
 sd-card/
-README.md
+*.md
+*.DS_Store
