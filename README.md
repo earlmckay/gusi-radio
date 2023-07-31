@@ -79,14 +79,7 @@ dtoverlay=hifiberry-dac
 
 ------------
 
-
-  **4) Install SHIM OnOFF**
-
-```curl https://get.pimoroni.com/onoffshim | bash```
-
-------------
-
-  **5) Set up Hifiberry**
+  **4) Set up Hifiberry**
 Set Hifiberry as default audio device
 
 ```sudo nano /etc/asound.conf```
@@ -108,7 +101,7 @@ pcm.!default {
 ------------
 
 
-  **6) Install Music Player Deamon**
+  **5) Install Music Player Deamon**
   
 ```sudo apt-get update```
 
@@ -130,7 +123,7 @@ rtw_ips_mode=1
 
 ------------
 
-  **7) Install GuSi**
+  **6) Install GuSi**
 
 Install git:
 
@@ -155,30 +148,33 @@ Reboot the device
 ------------
 
 
-  **8) Set up autostart**
+  **7) Set up autostart**
 
-```crontab -e```
-
-Insert following text at the bottom:
-```
-@reboot /home/gusi/gusi-radio/autostart.sh
-```
+```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
 
 Make the scripts executable:
 
-```sudo chmod a+x /home/gusi/gusi-radio/autostart.sh```
+```sudo chmod +x /etc/rc.local```
+
+```sudo chmod a+x /home/gusi/gusi-radio/gusi.py```
 
 ```sudo chmod a+x /home/gusi/gusi-radio/auto_wps.py```
 
 ------------
 
 
-  **9) Install Python 3 librarys**
+  **8) Install Python 3 librarys**
 
 ```sudo apt-get install python3-pip```
 
 ```sudo apt install python3-gpiozero```
 
+
+------------
+
+  **9) Install SHIM OnOFF**
+
+```curl https://get.pimoroni.com/onoffshim | bash```
 
 ------------
 
@@ -206,7 +202,7 @@ Change the first line (EN to DE):
 
 Update the database:
 
-```sudo mpc update```
+```mpc update```
 
 You can test the script by running it with the command:
 
