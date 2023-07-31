@@ -142,11 +142,11 @@ Clone the repository:
 
 Replace the original MPC config:
 
-```sudo mv /home/pi/gusi-radio/mpd.conf /etc/```
+```sudo mv /home/gusi/gusi-radio/mpd.conf /etc/```
 
 Replace the original cleanshutd Config:
 
-```sudo mv /home/pi/gusi-radio/cleanshutd.conf /etc/```
+```sudo mv /home/gusi/gusi-radio/cleanshutd.conf /etc/```
 
 Reboot the device
 
@@ -161,14 +161,14 @@ Reboot the device
 
 Insert following text at the bottom:
 ```
-@reboot /home/pi/gusi-radio/autostart.sh
+@reboot /home/gusi/gusi-radio/autostart.sh
 ```
 
 Make the scripts executable:
 
-```sudo chmod a+x /home/pi/gusi-radio/autostart.sh```
+```sudo chmod a+x /home/gusi/gusi-radio/autostart.sh```
 
-```sudo chmod a+x /home/pi/gusi-radio/auto_wps.py```
+```sudo chmod a+x /home/gusi/gusi-radio/auto_wps.py```
 
 ------------
 
@@ -184,7 +184,7 @@ Make the scripts executable:
 
   **10) Customize the Code**
 
-```sudo nano /home/pi/gusi-radio/gusi.py```
+```sudo nano /home/gusi/gusi-radio/gusi.py```
 
 Customize radio station:
 
@@ -196,29 +196,21 @@ Also remember to adjust the amount in the areas "RADIO STATION ORDER" and "ANNOU
 
 Customize language:
 
-For German announcements:
+The default language is English. To set the announcements to German, the path must be modified:
 
-```sudo mv /home/pi/gusi-radio/announcements/DE/* /home/pi/gusi-radio/announcements/```
+```sudo nano /etc/mpd.conf```
 
-```sudo rm -r /home/pi/gusi-radio/announcements/DE```
+Change the first line (EN to DE):
 
-```sudo rm -r /home/pi/gusi-radio/announcements/EN```
+```music_directory		"/home/pi/gusi-radio/announcements/DE"```
 
-```sudo mpc update```
-
-For English announcements:
-
-```sudo mv /home/pi/gusi-radio/announcements/EN/* /home/pi/gusi-radio/announcements/```
-
-```sudo rm -r /home/pi/gusi-radio/announcements/EN```
-
-```sudo rm -r /home/pi/gusi-radio/announcements/DE```
+Update the database:
 
 ```sudo mpc update```
 
 You can test the script by running it with the command:
 
-```python3 /home/pi/gusi-radio/gusi.py```
+```python3 /home/gusi/gusi-radio/gusi.py```
 
 ------------
 

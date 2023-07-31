@@ -64,7 +64,7 @@ while 1:
     else:
         print("network is up")
         os.system("sudo mpc clear")
-        os.system("sudo mpc add problem.mp3")
+        os.system("sudo mpc add wps_error.mp3")
         os.system("sudo mpc play")
         time.sleep(12)
         os.system("sudo shutdown now")

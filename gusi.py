@@ -12,15 +12,15 @@ current_station = 0;
 vol = 40;
 btn_clk = RotaryEncoder(23, 27, bounce_time=float)
 btn_sw = Button(22)
-RS1 = "http://www.segenswelle.de:8000/deutsch"
-RS2 = "https://server23644.streamplus.de/stream.mp3"
-RS3 = "https://server32349.streamplus.de/stream.mp3"
+S1 = "http://www.segenswelle.de:8000/deutsch"
+S2 = "https://server23644.streamplus.de/stream.mp3"
+S3 = "https://server32349.streamplus.de/stream.mp3"
 
 #---------- RADIO STATIONS ORDER ----------#
-stations = [RS1, RS2, RS3]
+stations = [S1, S2, S3]
 
 #---------- ANNOUNCEMENTS ORDER ----------#
-announcements = ["rs1.mp3", "rs2.mp3", "rs3.mp3"]
+announcements = ["s1.mp3", "s2.mp3", "s3.mp3"]
 
 #---------- DEFINITIONS ----------#
 def change_station():
