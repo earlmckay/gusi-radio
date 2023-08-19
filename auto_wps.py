@@ -2,73 +2,116 @@ import re
 import subprocess
 import time
 import os
+from gpiozero import LED, Button
+
+led = LED(14)
 
 def checkip():
-    # here is a little function that can tell me if my rpi has IP address and wat it is
+    print("Check IP")
     ret = subprocess.check_output(["ifconfig", "wlan0"]).decode("utf-8")
     reg = re.search("inet (\d+\.\d+\.\d+\.\d+)", ret)
     if reg is None:
-        print("no ip found")
+        print("No IP in ifconfig")
         return False
     else:
+        print("Found IP in ifconfig")
         return reg.group(1)
 
+##########     START     ##########
+
+led.blink(on_time=0.3, off_time=0.3)
+subprocess.call(["mpc", "clear"])
+subprocess.call(["mpc", "repeat", "on"])
+subprocess.call(["mpc", "add", "wifi_ping.mp3"])
+subprocess.call(["mpc", "play"])
+
+print("STOP wpa_supplicant")
+subprocess.run(["sudo", "killall", "-q", "wpa_supplicant"])
+time.sleep(3)
+
+print("reset wpa_supplicant.conf")
+new_config = """ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+"""
+with open("/etc/wpa_supplicant/wpa_supplicant.conf", "w") as f:
+    f.write(new_config)
+time.sleep(5)
+
+#print("set wifi region")
+#subprocess.call(["sudo", "iw", "reg", "set", "DE"])
+#time.sleep(5)
+
+print("START wpa_supplicant")
+subprocess.run(["sudo", "wpa_supplicant", "-B", "-i", "wlan0", "-c", "/etc/wpa_supplicant/wpa_supplicant.conf"])
+
 ip = checkip()
-count = 1
+connection_attempts = 0
 
-os.system("sudo mpc clear")
-os.system("sudo mpc repeat on")
-os.system("sudo mpc add wps_ping.mp3")
-os.system("sudo mpc play")
-
-#run until we are sure that WiFi is connected and running
-while 1:
+while connection_attempts < 4:
     # no IP address, so start looking for WPS-PBC network
-    if ip is False and count < 11:
-
-        # limiting the scan to 5 rounds (add 1)
-        count += 1
-
+    if ip is False:
+        connection_attempts += 1
+    
         # scan networks on interface wlan0, to see some nice networks
         print("scanning network")
         subprocess.check_output(["wpa_cli", "-i", "wlan0", "scan"])
-
         #works better with some sleep, dunno why
-        print("sleep for 2 secounds")
-        time.sleep(2);
-
+        time.sleep(1)
+        
         #get and decode results
         print("get result")
         wpa = subprocess.check_output(["wpa_cli", "-i", "wlan0", "scan_results"]).decode("UTF-8")
+        time.sleep(3)
 
         #parse response to get MAC address of router that has WPS-PBC state
-        print("get MAC address")
+        print("MAC address")
         active_spot_reg = re.search("(([\da-f]{2}:){5}[\da-f]{2})(.*?)\[WPS-PBC\]", wpa)
-
-        #check if we found any
+        print("MAC address", active_spot_reg)
+        
+        #check if we found any 
+        print("check catch")
         if not (active_spot_reg is None):
             if active_spot_reg.group(1):
-
+                
                 #connect via wps_pbc
                 subprocess.check_output(["wpa_cli", "-i", "wlan0", "wps_pbc", active_spot_reg.group(1)])
-
+                
                 # some debug
+                print("MAC address:", active_spot_reg.group(1))
                 print(active_spot_reg.group(1))
                 print(wpa)
-                os.system("sudo mpc clear")
-                os.system("sudo mpc repeat off")
-                os.system("sudo mpc add wps_successfull.mp3")
-                os.system("sudo mpc play")
-                time.sleep(8)
-                os.system("sudo reboot")
-    else:
-        print("network is up")
-        os.system("sudo mpc clear")
-        os.system("sudo mpc add wps_error.mp3")
-        os.system("sudo mpc play")
-        time.sleep(12)
-        os.system("sudo shutdown now")
-        break
+                time.sleep(5)
 
+                led.on()
+
+                print("STOP wpa_supplicant")
+                subprocess.run(["sudo", "killall", "-q", "wpa_supplicant"])
+                time.sleep(3)
+
+                print("START wpa_supplicant")
+                subprocess.run(["sudo", "wpa_supplicant", "-B", "-i", "wlan0", "-c", "/etc/wpa_supplicant/wpa_supplicant.conf"])
+
+                print("Success!")
+                subprocess.call(["mpc", "clear"])
+                subprocess.call(["mpc", "add", "wifi_wps_successful.mp3"])
+                subprocess.call(["mpc", "play"])
+                subprocess.call(["mpc", "repeat", "off"])
+                time.sleep(34)
+                os.system("python3 /home/gusi/gusi-radio/gusi.py")
+                quit()
+                break
+        
     # sleep to scan again
     time.sleep(10)
+
+else:
+    led.blink(on_time=0.6, off_time=0.6)
+    print("Network is not up")
+    print("IP address:", ip)
+    subprocess.call(["mpc", "clear"])
+    subprocess.call(["mpc", "add", "wifi_wps_fail.mp3"])
+    subprocess.call(["mpc", "play"])
+    subprocess.call(["mpc", "repeat", "off"])
+    time.sleep(45)
+    os.system("sudo shutdown now")

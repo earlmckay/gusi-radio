@@ -1,6 +1,6 @@
-![](images/gusi-radio_panorama_3d.jpg)
+![](images/thumbnail.jpg)
 
-# gusi-radio
+# GuSi-radio
 
 GuSi – the user friendly internet radio
 
@@ -8,7 +8,46 @@ The GuSi radio is a very user-friendly internet radio with only two buttons. It 
 
 ------------
 
+### Instructions for WLAN registration using the SD card / Anleitung zur WLAN-Anmeldung mithilfe der SD-Karte
+
+Open the housing and insert the SD card into a computer. Open the text editor and insert the following lines:
+
+```
+country=EN
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+ssid="NAME"
+psk="PASSWORD"
+}
+```
+
+Replace NAME and PASSWORD inside the quotes with the WLAN credentials.
+Save the document as: wpa_supplicant.conf
+Attention it should not have the extension ".txt".
+Paste the file onto the SD card, put it back into the radio and start it.
+
+Gehäuse öffnen und die SD-Karte in einen Computer stecken. Öffnen sie den Text-Editor und fügen Sie folgende Zeilen ein:
+
+```
+country=DE
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+ssid="NAME"
+psk="KENNWORT"
+}
+```
+
+NAME und KENNWORT innerhalb der Anführungszeichen durch die WLAN Anmeldedaten ersetzen.
+Dokument als Datei speichern als: wpa_supplicant.conf
+Achtung es darf nicht die Endung ".txt" haben.
+Datei auf die SD-Karte einfügen, zurück ins Radio setzen und starten.
+
+------------
+
 ### Components you need
+
 
  - 1 x [Raspberry Pi zero](https://www.reichelt.de/de/de/raspberry-pi-zero-wh-v-1-1-1-ghz-512-mb-ram-wlan-bt-rasp-pi-zero-wh-p222531.html?&nbc=1)
  - 1 x [Power supply unit (5 V with a barrel jack 2.1 / 5.5 mm)](https://www.reichelt.de/de/de/steckernetzteil-12-w-5-v-2-4-a-ea1012ahes501-p293278.html?&nbc=1)
@@ -60,27 +99,53 @@ Insert the card into the Raspberry and let it boot up. Find out which IP address
 
 ------------
 
+  **3) Install 
 
-  **3) Edit the Config**
-After successful login, edit the config.txt file. 
+  ```sudo apt-get update -y```
+
+```sudo apt-get upgrade -y```
+
+```sudo apt-get install mpd mpc alsa-utils```
+
+```sudo apt install git```
+
+```sudo apt-get install python3-pip```
+
+```sudo apt install python3-gpiozero```
+
+------------
+
+  **4) Clone repository and place files:
+
+```git clone https://github.com/earlmckay/gusi-radio```
+
+```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
+
+```sudo chmod a+x /etc/rc.local```
+
+```sudo mv /home/gusi/gusi-radio/cleanshutd.conf /etc/```
+
+```sudo nano /etc/modprobe.d/8192cu.conf```
+
+Insert following text:
+```
+options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
+
+rtw_ips_mode=1
+```
 
 ```sudo nano /boot/config.txt```
 
 Add the following lines at the bottom.
 
-```
- ################## GUSI ################
+``` 
+################## GUSI ################
 # Disable Bluetooth
 dtoverlay=pi3-disable-bt
 
 # Enable Hifiberry Soundcard
 dtoverlay=hifiberry-dac
 ```
-
-------------
-
-  **4) Set up Hifiberry**
-Set Hifiberry as default audio device
 
 ```sudo nano /etc/asound.conf```
 
@@ -100,118 +165,8 @@ pcm.!default {
 
 ------------
 
+  **5) Optimization
 
-  **5) Install Music Player Deamon**
-  
-```sudo apt-get update```
-
-```sudo apt-get upgrade```
-
-```sudo apt-get install mpd mpc alsa-utils```
-
-Improve stability:
-
-```sudo nano /etc/modprobe.d/8192cu.conf```
-
-Insert following text:
-```
-options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
-
-rtw_ips_mode=1
-
-```
-
-------------
-
-  **6) Install GuSi**
-
-Install git:
-
-```sudo apt install git```
-
-Clone the repository:
-
-```git clone https://github.com/earlmckay/gusi-radio```
-
-Replace the original MPC config:
-
-```sudo mv /home/gusi/gusi-radio/mpd.conf /etc/```
-
-Replace the original cleanshutd Config:
-
-```sudo mv /home/gusi/gusi-radio/cleanshutd.conf /etc/```
-
-Reboot the device
-
-```sudo reboot```
-
-------------
-
-
-  **7) Set up autostart**
-
-```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
-
-Make the scripts executable:
-
-```sudo chmod +x /etc/rc.local```
-
-```sudo chmod a+x /home/gusi/gusi-radio/gusi.py```
-
-```sudo chmod a+x /home/gusi/gusi-radio/auto_wps.py```
-
-------------
-
-
-  **8) Install Python 3 librarys**
-
-```sudo apt-get install python3-pip```
-
-```sudo apt install python3-gpiozero```
-
-
-------------
-
-  **9) Install SHIM OnOFF**
-
-```curl https://get.pimoroni.com/onoffshim | bash```
-
-------------
-
-  **10) Customize the Code**
-
-```sudo nano /home/gusi/gusi-radio/gusi.py```
-
-Customize radio station:
-
-First, the URLs in the variables must be customized to your preferences. 
-To do this, change the URLs for "RS1", "RS2" and "RS3" in the "VAR DEFINITIONS" area.
-
-If more stations are needed, the list of variables can be extended with "RS4", "RS5" ... .
-Also remember to adjust the amount in the areas "RADIO STATION ORDER" and "ANNOUNCEMENTS ORDER". (Here simply continue the list).
-
-Customize language:
-
-The default language is English. To set the announcements to German, the path must be modified:
-
-```sudo nano /etc/mpd.conf```
-
-Change the first line (EN to DE):
-
-```music_directory		"/home/pi/gusi-radio/announcements/DE"```
-
-Update the database:
-
-```mpc update```
-
-You can test the script by running it with the command:
-
-```python3 /home/gusi/gusi-radio/gusi.py```
-
-------------
-
-
-  **11) Optimization**
 Deaktivate swapping:
 
 ```sudo systemctl stop dphys-swapfile```
@@ -226,9 +181,64 @@ Deactivate some unused modules:
 
 ```sudo /usr/bin/tvservice -o```
 
-Reboot the device
+------------
 
-```sudo reboot```
+  **6) Custom settings**
+For English:
+```sudo mv /home/gusi/gusi-radio/EN/mpd.conf /etc/```
+
+```rm -r /home/gusi/gusi-radio/announcements/DE```
+
+```mpc update```
+
+For German:
+```sudo mv /home/gusi/gusi-radio/DE/mpd.conf /etc/```
+
+```rm -r /home/gusi/gusi-radio/announcements/EN```
+
+```mpc update```
+
+------------
+
+  ***GUSI.py***
+
+```sudo nano /home/gusi/gusi-radio/gusi.py```
+
+Customize radio station:
+
+First, the URLs in the variables must be customized to your preferences. 
+To do this, change the URLs for "RS1", "RS2" and "RS3" in the "VAR DEFINITIONS" area.
+
+If more stations are needed, the list of variables can be extended with "RS4", "RS5" ... .
+Also remember to adjust the amount in the areas "RADIO STATION ORDER" and "ANNOUNCEMENTS ORDER". (Here simply continue the list).
+
+------------
+
+  ***AUTO-WPS.py***
+
+```nano /home/gusi/gusi-radio/auto_WPS.py```
+
+Search for (Linie 35):
+```
+print("reset wpa_supplicant.conf")
+new_config = """ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=DE
+"""
+```
+
+Replace DE with the required country code
+
+------------
+
+  **8) Install SHIM OnOFF**
+
+```curl https://get.pimoroni.com/onoffshim | bash```
+
+or:
+
+```chmod a+x home/gusi/gusi-radio/onoffshim.sh```
+```bash /home/gusi/gusi-radio/onoffshim.sh```
 
 ------------
 

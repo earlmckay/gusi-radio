@@ -24,7 +24,7 @@ mpc repeat off
 mpc add boot.mp3
 mpc volume 40
 mpc play
-sleep 2
-python3 /home/gusi/gusi-radio/gusi.py
+sleep 5
+python3 /home/gusi/gusi-radio/start.py
 
 exit 0

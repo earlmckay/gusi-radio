@@ -8,8 +8,8 @@ import urllib
 from urllib.request import Request, urlopen
 
 #---------- VAR DEFINITION ----------#
-current_station = 0;
-vol = 40;
+current_station = 0
+vol = 34
 btn_clk = RotaryEncoder(23, 27, bounce_time=float)
 btn_sw = Button(22)
 S1 = "http://www.segenswelle.de:8000/deutsch"
@@ -31,11 +31,7 @@ def change_station():
 
 def play(current_station):
     print(stations[current_station])
-    sudo_mpc("stop")
-    sudo_mpc("clear")
-    sudo_mpc("add " + announcements[current_station])
-    sudo_mpc("add " + stations[current_station])
-    sudo_mpc("play")
+    os.system("mpc clear; mpc add " + announcements[current_station] + "; mpc add " + stations[current_station] + "; mpc play")
 
 def check_connection():
 
@@ -46,52 +42,38 @@ def check_connection():
     except:
         while offline_count < 4:
             print("Ckeck connection " , offline_count)
-            time.sleep(10)
+            time.sleep(5)
             offline_count += 1
         else:
             print('OFFLINE')
-            sudo_mpc("clear")
-            sudo_mpc("repeat off")
-            sudo_mpc("add no_connection.mp3")
-            sudo_mpc("add wps_client.mp3")
-            sudo_mpc("play")
-            #time.sleep(6)
-            btn_sw.wait_for_press(timeout=30)
+            os.system("mpc clear; mpc repeat off; mpc add no_connection.mp3; mpc add wps_client.mp3; mpc play")
+            btn_sw.wait_for_press(timeout=40)
             if btn_sw.is_pressed:
-                sudo_mpc("clear")
-                sudo_mpc("add wps_router.mp3")
-                sudo_mpc("play")
-                time.sleep(6)
-                os.system("sudo python3 /home/pi/gusi-radio/auto_wps.py")
+                os.system("mpc clear; mpc add wps_router.mp3; mpc play")
+                time.sleep(16)
+                os.system("sudo python3 /home/gusi/gusi-radio/auto_wps.py")
                 quit()
-            else:
-                sudo_mpc("clear")
-                sudo_mpc("add problem.mp3")
-                sudo_mpc("play")
-                time.sleep(10)
-                quit()
+
+            os.system("mpc clear; mpc add wps_error.mp3; mpc play")
+            time.sleep(21)
+            os.system("sudo shutdown now")
     else:
         print('ONLINE')
 
-def sudo_mpc(command):
-    os.system("sudo mpc " + command)
-
 def vol_up():
     global vol
-    vol += 5
+    vol += 2
     print(str(vol))
-    sudo_mpc("volume " + str(vol))
+    os.system("mpc volume " + str(vol))
 
 def vol_down():
     global vol
-    vol -= 5
+    vol -= 2
     print(str(vol))
-    sudo_mpc("volume " + str(vol))
+    os.system("mpc volume " + str(vol))
 
 #---------- START ----------#
-sudo_mpc("clear")
-sudo_mpc("volume 35")
-sudo_mpc("repeat off")
+os.system("mpc clear; mpc repeat off; mpc volume 34")
 check_connection()
 play(current_station)
 
