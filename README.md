@@ -1,3 +1,4 @@
+
 ![](images/thumbnail.jpg)
 
 # GuSi-radio
@@ -93,38 +94,50 @@ Click on "save" and then on "write" to start the installation.
 ------------
 
   **2) SSH Connection**
-Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. Now access the Raspberry via SSH.
+Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. You can try ```ping gusi```.
 
-```ssh gusi@192.168.1.100```
+Now access the Raspberry via SSH.
+```ssh gusi@192.168.1.100``` 
 
 ------------
 
   **3) Install 
 
+Fetch latest version of packages:
   ```sudo apt-get update -y```
 
+Download and install updates for outdated packages:
 ```sudo apt-get upgrade -y```
 
+Install Music Player Daemon with ALSA:
 ```sudo apt-get install mpd mpc alsa-utils```
 
+Install Git:
 ```sudo apt install git```
 
+Install Python 3:
 ```sudo apt-get install python3-pip```
 
+Install GPIOzero Library:
 ```sudo apt install python3-gpiozero```
 
 ------------
 
   **4) Clone repository and place files:
 
+Clone the Git-files to Raspberry:
 ```git clone https://github.com/earlmckay/gusi-radio```
 
+Move the rc.local to start the start.py automatically on boot:
 ```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
 
+Make the rc.local executable:
 ```sudo chmod a+x /etc/rc.local```
 
+Move cleanshutd.conf to the directory:
 ```sudo mv /home/gusi/gusi-radio/cleanshutd.conf /etc/```
 
+Create a new file and open it in the editor:
 ```sudo nano /etc/modprobe.d/8192cu.conf```
 
 Insert following text:
@@ -133,8 +146,9 @@ options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 
 rtw_ips_mode=1
 ```
-
+Open the boot.conf in the editor
 ```sudo nano /boot/config.txt```
+
 
 Add the following lines at the bottom.
 
@@ -147,6 +161,7 @@ dtoverlay=pi3-disable-bt
 dtoverlay=hifiberry-dac
 ```
 
+Open the asound.conf in the editor
 ```sudo nano /etc/asound.conf```
 
 Insert following text:
@@ -173,6 +188,7 @@ Deaktivate swapping:
 
 ```sudo systemctl disable dphys-swapfile```
 
+
 Deactivate some unused modules:
 
 ```sudo systemctl disable keyboard-setup.service```
@@ -191,6 +207,7 @@ For English:
 
 ```mpc update```
 
+
 For German:
 ```sudo mv /home/gusi/gusi-radio/DE/mpd.conf /etc/```
 
@@ -198,10 +215,13 @@ For German:
 
 ```mpc update```
 
+(Moves the configuration file for the music player, which has the correct paths to the audio data, to the correct location and deletes the unneeded voice data.)
+
 ------------
 
   ***GUSI.py***
 
+Open the gusy.py in the editor:
 ```sudo nano /home/gusi/gusi-radio/gusi.py```
 
 Customize radio station:
@@ -232,11 +252,12 @@ Replace DE with the required country code
 ------------
 
   **8) Install SHIM OnOFF**
-
+Install the ON/OFF switch with the manufacturer's code:
 ```curl https://get.pimoroni.com/onoffshim | bash```
 
 or:
 
+Alternatively, move this data to the locations:
 ```chmod a+x home/gusi/gusi-radio/onoffshim.sh```
 ```bash /home/gusi/gusi-radio/onoffshim.sh```
 
