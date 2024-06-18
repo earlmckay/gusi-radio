@@ -203,7 +203,11 @@ Deactivate some unused modules:
 For English:
 ```sudo mv /home/gusi/gusi-radio/EN/mpd.conf /etc/```
 
-```rm -r /home/gusi/gusi-radio/announcements/DE```
+```rm -r /home/gusi/gusi-radio/DE```
+
+```sudo systemctl start mpd```
+
+```sudo systemctl enable mpd```
 
 ```mpc update```
 
@@ -211,7 +215,7 @@ For English:
 For German:
 ```sudo mv /home/gusi/gusi-radio/DE/mpd.conf /etc/```
 
-```rm -r /home/gusi/gusi-radio/announcements/EN```
+```rm -r /home/gusi/gusi-radio/EN```
 
 ```mpc update```
 
@@ -236,7 +240,7 @@ Also remember to adjust the amount in the areas "RADIO STATION ORDER" and "ANNOU
 
   ***AUTO-WPS.py***
 
-```nano /home/gusi/gusi-radio/auto_WPS.py```
+```nano /home/gusi/gusi-radio/auto_wps.py```
 
 Search for (Linie 35):
 ```
