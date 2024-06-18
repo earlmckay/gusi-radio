@@ -147,7 +147,7 @@ options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 rtw_ips_mode=1
 ```
 Open the boot.conf in the editor
-```sudo nano /boot/config.txt```
+```sudo nano /boot/firmware/config.txt```
 
 
 Add the following lines at the bottom.
