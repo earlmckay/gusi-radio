@@ -126,7 +126,7 @@ Install GPIOzero Library:
   **4) Clone repository and place files:
 
 Clone the Git-files to Raspberry:
-```git clone https://github.com/earlmckay/gusi-radio```
+```git clone https://github.com/earlmckay/gusi-radio.git```
 
 Move the rc.local to start the start.py automatically on boot:
 ```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
