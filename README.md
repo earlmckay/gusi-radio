@@ -7,6 +7,8 @@ GuSi – the user friendly internet radio
 
 The GuSi radio is a very user-friendly internet radio with only two buttons. It allows the user to switch through predefined stations with just one push on the button. This makes it especially suitable for seniors or handicapped people.
 
+A short demonstration of the radio can be found [here]([https://www.thingiverse.com/thing:5206074](https://youtu.be/FBuoywtGWyI) "Video").
+
 ------------
 
 ### Instructions for WLAN registration using the SD card / Anleitung zur WLAN-Anmeldung mithilfe der SD-Karte
@@ -70,7 +72,10 @@ Datei auf die SD-Karte einfügen, zurück ins Radio setzen und starten.
 
 80% of the components can be purchased from reichelt.de (Preconfigured shopping cart: [Gusi Radio](https://www.reichelt.de/my/1832192 "Gusi Radio")). The screws, the GPIO edge and the Rotary Encoder are not available there.
 
-The 3D files can be downloaded [here](https://www.thingiverse.com/thing:5206074 "Thingiverse").
+The 3D files can be downloaded at 
+[printables.com]([https://www.thingiverse.com/thing:5206074](https://www.printables.com/de/model/459099-gusi-radio) "Printables") 
+or [thingiverse.com](https://www.thingiverse.com/thing:5206074 "Thingiverse").
+
 
 ------------
 
