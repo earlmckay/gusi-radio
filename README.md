@@ -8,7 +8,7 @@ GuSi – the user friendly internet radio
 
 The GuSi radio is a very user-friendly internet radio with only two buttons. It allows the user to switch through predefined stations with just one push on the button. This makes it especially suitable for seniors or handicapped people.
 
-A short demonstration of the radio can be found [here](https://youtu.be/FBuoywtGWyI)).
+A short demonstration of the radio can be found [here](https://youtu.be/FBuoywtGWyI).
 
 ------------
 
