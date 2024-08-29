@@ -63,7 +63,7 @@ def check_DHCP_daemon():
     return False
     
 def run_auto_wps_script():
-    subprocess.call(["python3", "/home/gusi/gusi-radio/auto_wps.py"])
+    subprocess.Popen(["python3", "/home/gusi/gusi-radio/auto_wps.py"])
     quit()
 
 def main():
@@ -77,7 +77,8 @@ def main():
             # Local OK / internet OK
             if check_internet_connection():
                 led.on()
-                subprocess.call(["python3", "/home/gusi/gusi-radio/gusi.py"])
+                time.sleep(1)
+                subprocess.Popen(["python3", "/home/gusi/gusi-radio/gusi.py"])
                 quit()
             
             # Local OK / internet ERROR

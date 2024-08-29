@@ -1,37 +1,23 @@
+<img src="images/thumbnail.jpg">
 
 
-![](images/thumbnail.jpg)
-
-# GuSi-radio
+<h1>GuSi-Radio</h1>
 
 GuSi – the user friendly internet radio
 
 The GuSi radio is a very user-friendly internet radio with only two buttons. It allows the user to switch through predefined stations with just one push on the button. This makes it especially suitable for seniors or handicapped people.
 
-A short demonstration of the radio can be found [here](https://youtu.be/FBuoywtGWyI).
+A short demonstration of the radio:
+
+[![Functionality](https://img.youtube.com/vi/FBuoywtGWyI/0.jpg)](https://youtu.be/FBuoywtGWyI)
 
 ------------
-
-### Instructions for WLAN registration using the SD card / Anleitung zur WLAN-Anmeldung mithilfe der SD-Karte
-
-Open the housing and insert the SD card into a computer. Open the text editor and insert the following lines:
-
-```
-country=EN
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-network={
-ssid="NAME"
-psk="PASSWORD"
-}
-```
-
-Replace NAME and PASSWORD inside the quotes with the WLAN credentials.
-Save the document as: wpa_supplicant.conf
-Attention it should not have the extension ".txt".
-Paste the file onto the SD card, put it back into the radio and start it.
-
-Gehäuse öffnen und die SD-Karte in einen Computer stecken. Öffnen sie den Text-Editor und fügen Sie folgende Zeilen ein:
+</br>
+<div class="warning" style='padding:1em; background-color:#F1C40F; color:black'>
+<span>
+<p style='text-align:center'>
+<img src="images/flag_de.svg" alt=(DE) style="width:16px"> <b>WLAN-Anmeldung ohne WPS</b></p>
+Öffne das Gehäuse, entnehme die SD-Karte und stecke diese in einen Computer. Öffne den Text-Editor und füge folgenden Code ein:
 
 ```
 country=DE
@@ -43,122 +29,152 @@ psk="KENNWORT"
 }
 ```
 
-NAME und KENNWORT innerhalb der Anführungszeichen durch die WLAN Anmeldedaten ersetzen.
-Dokument als Datei speichern als: wpa_supplicant.conf
-Achtung es darf nicht die Endung ".txt" haben.
+Ersetze <b>NAME</b> und <b>KENNWORT</b> innerhalb der Anführungszeichen durch die WLAN-Anmeldedaten ersetzen.
+
+Speicher das Dokument als Datei speichern als: wpa_supplicant.conf
+Achte darauf, dass die Endung ".conf" sein muss und nicht ".txt"!
+
 Datei auf die SD-Karte einfügen, zurück ins Radio setzen und starten.
+</div>
+<br>
+<div class="warning" style='padding:1em; background-color:#F1C40F; color:black'>
+<span>
+<p style='text-align:center'>
+<img src="images/flag_en.svg" alt=(DE) style="width:16px"> <b>WiFi registration without WPS</b></p>
+Open the housing, remove the SD card and insert it into a computer. Open the text editor and insert the following code:
 
-------------
-
-### Components you need
-
-
- - 1 x [Raspberry Pi zero](https://www.reichelt.de/de/de/raspberry-pi-zero-wh-v-1-1-1-ghz-512-mb-ram-wlan-bt-rasp-pi-zero-wh-p222531.html?&nbc=1)
- - 1 x [Power supply unit (5 V with a barrel jack 2.1 / 5.5 mm)](https://www.reichelt.de/de/de/steckernetzteil-12-w-5-v-2-4-a-ea1012ahes501-p293278.html?&nbc=1)
- - 1 x [Hifiberry MiniAMP](https://www.reichelt.de/de/de/raspberry-pi-shield-hifiberry-miniamp-rpi-hb-mini-amp-p191036.html?&nbc=1)
- - 1 x [Micro SD Card](https://www.reichelt.de/de/de/microsdhc-speicherkarte-16gb-sandisk-ultra-sdsquar016ggn6ma-p214843.html?&nbc=1)
- - 1 x [Small speaker with 10-30 W](https://www.reichelt.de/de/de/breitbandlautsprecher-fr-8-ta-10-w-4-ohm-vis-2402-p239748.html?&nbc=1)
- - 1 x [LED 5 mm](https://www.reichelt.de/de/de/led-5-mm-bedrahtet-kaltweiss-7150-mcd-50--led-el-5-7150kw-p164206.html?&nbc=1)
- - 1 x [Pushbuton (Cherry MX Key)](https://www.reichelt.de/de/de/cherry-mx-blue-keyswitch-cherry-mx1a-e1nn-p202569.html?&nbc=1)
- - 1 x [Power jack socket](https://www.reichelt.de/de/de/einbaubuchse-zentraleinbau-aussen-5-6-mm-innen-2-1-mm-hebl-21-p8524.html?&nbc=1)
- - 1 x [Speaker cable (about 0.5 mm²)](https://www.reichelt.de/de/de/zwillingslitze-flexibel-2x0-5mm-5m-ring-la-205-5-p9816.html?&nbc=1)
- - 1 x [Cable (about 0.14 mm²) for the connections](https://www.reichelt.de/de/de/kupferlitze-isoliert-10-m-1-x-0-14-mm-schwarz-litze-sw-p10298.html?&nbc=1)
- - 1 x [Micro-USB plug](https://www.reichelt.de/de/de/micro-usb-stecker-typ-b-5-polig-usb-micro-st-p124013.html?&nbc=1)
- - 6 x [Pan head screw M2.5 6 mm](https://www.ebay.de/itm/251411230965?_trkparms=ispr%3D1&hash=item3a8946f0f5:g:FYEAAOxydlFSrMWA&amdata=enc%3AAQAGAAACoPYe5NmHp%252B2JMhMi7yxGiTJkPrKr5t53CooMSQt2orsSg3Ye8yTWgOW7pmE1t838dpsBclJk1M3ulJ%252FglBcTmXJX3%252BzRg0H2INadil%252BBp%252Fk%252BZY%252FI%252BR%252F5uJ0EoVAWur4JjuGs48Sg2KLeW%252BfF%252BaRPvEHQ%252BzfUq68tp6TKcf7bCp9xiAAHtK88EaOCE1ueldkUDYmH4i8crB%252FNoDd%252FMtRoHkRWLuQ9FRKNjTqua7zyMzCPcVT3KLCta8zEheq0RPYYOmW1KYRUcVc8eYGLXTMeVa34MfFfNdfN%252BJLqZ%252FhhrtV9OKFQBVq9rM%252BdgimLALmkp2xAwklhRJH1H56gfWjoghc5vMG%252BWp2FME5AeQVpADuWC4NRhHTI8E2GP2UI3426VWVQ9uDTMaJUJ6CMK%252Bgg2IAHQ8dNrA3CwlagbuB%252BGRI3r7vCTXbZx5zsRvjkw01GdeczQCdYotA4mJT6m3T9hXuC446gixqgCcNtCJgFHcsCZC2ai7Qfpq%252BmDMa1qJIU%252B4uXGY%252FV2qJ%252FNIkIldPFcwT7xgwRo0S9J72iEKf5tXg1HrZDxsTRWiYRuVDTdrnJP%252BudIqH%252BWO8YY15q4CSu8%252B72q5oVHwHFwDZGGdsRnCwRx3Zav9bpc9RcGap60Pxd8%252Bp4ZQC9uirkEFsw4lBKgdRFdYhK9MwP6aXsDw4SPjIIDSq%252F5uiRel%252BMiOHdVQwlR4L35UQMTlZDyR2QpdY%252FwbGfzO%252B%252BBo3RtbwAMmGnVGD3nx9aTrr2uwRYrrmjgXakt5l6IL3xSxt5IvMYZE%252BO6gBad9VLLtI4np1qGjoLGWHx35NqyfM45ATQvCoV6Yu4xOaQVz%252FNVph4NcoSQ1RVz%252Fm4TdMZrDx%252FscbNagSiyy1JZUXA6Z0GmcfdOqJ1ItIFsQ%253D%253D%7Cclp%3A2334524%7Ctkp%3ABFBMyJyE5c1f)
- - 6 x [Pan head screw M2.5 10 mm](https://www.ebay.de/itm/251411230965?_trkparms=ispr%3D1&hash=item3a8946f0f5:g:FYEAAOxydlFSrMWA&amdata=enc%3AAQAGAAACoPYe5NmHp%252B2JMhMi7yxGiTJkPrKr5t53CooMSQt2orsSg3Ye8yTWgOW7pmE1t838dpsBclJk1M3ulJ%252FglBcTmXJX3%252BzRg0H2INadil%252BBp%252Fk%252BZY%252FI%252BR%252F5uJ0EoVAWur4JjuGs48Sg2KLeW%252BfF%252BaRPvEHQ%252BzfUq68tp6TKcf7bCp9xiAAHtK88EaOCE1ueldkUDYmH4i8crB%252FNoDd%252FMtRoHkRWLuQ9FRKNjTqua7zyMzCPcVT3KLCta8zEheq0RPYYOmW1KYRUcVc8eYGLXTMeVa34MfFfNdfN%252BJLqZ%252FhhrtV9OKFQBVq9rM%252BdgimLALmkp2xAwklhRJH1H56gfWjoghc5vMG%252BWp2FME5AeQVpADuWC4NRhHTI8E2GP2UI3426VWVQ9uDTMaJUJ6CMK%252Bgg2IAHQ8dNrA3CwlagbuB%252BGRI3r7vCTXbZx5zsRvjkw01GdeczQCdYotA4mJT6m3T9hXuC446gixqgCcNtCJgFHcsCZC2ai7Qfpq%252BmDMa1qJIU%252B4uXGY%252FV2qJ%252FNIkIldPFcwT7xgwRo0S9J72iEKf5tXg1HrZDxsTRWiYRuVDTdrnJP%252BudIqH%252BWO8YY15q4CSu8%252B72q5oVHwHFwDZGGdsRnCwRx3Zav9bpc9RcGap60Pxd8%252Bp4ZQC9uirkEFsw4lBKgdRFdYhK9MwP6aXsDw4SPjIIDSq%252F5uiRel%252BMiOHdVQwlR4L35UQMTlZDyR2QpdY%252FwbGfzO%252B%252BBo3RtbwAMmGnVGD3nx9aTrr2uwRYrrmjgXakt5l6IL3xSxt5IvMYZE%252BO6gBad9VLLtI4np1qGjoLGWHx35NqyfM45ATQvCoV6Yu4xOaQVz%252FNVph4NcoSQ1RVz%252Fm4TdMZrDx%252FscbNagSiyy1JZUXA6Z0GmcfdOqJ1ItIFsQ%253D%253D%7Cclp%3A2334524%7Ctkp%3ABFBMyJyE5c1f)
- - 1 x [GPIO edge adapter](https://www.berrybase.de/neu/gpio-edge-erweiterung-gpio-adapter-f-252-r-raspberry-pi?c=2413)
- - [Dupont crimps](https://www.reichelt.de/de/de/entwicklerboards-dupont-crimp-set-610-teilig-debo-set-dupont-p279901.html?&nbc=1)
- - 1 x [Rotarry encoder KY-040](https://www.berrybase.de/bauelemente/passive-bauelemente/potentiometer/drehimpulsgeber/drehregler/rotary-encoder-mit-breakoutboard)
- - 1 x [SHIM OnOff](https://www.reichelt.de/de/de/raspberry-pi-shield-onoff-shim-rpi-shd-onoff-p272023.html?&nbc=1)
-
-80% of the components can be purchased from reichelt.de (Preconfigured shopping cart: [Gusi Radio](https://www.reichelt.de/my/1832192 "Gusi Radio")). The screws, the GPIO edge and the Rotary Encoder are not available there.
-
-The 3D files can be downloaded at 
-[printables.com](https://www.printables.com/de/model/459099-gusi-radio)
-or [thingiverse.com](https://www.thingiverse.com/thing:5206074 "Thingiverse").
-
-
-------------
-
-### Software installation
-
- **1) Install the OS**
- Install Raspberry Pi OS lite on the SD card. You can use the tool [Raspberry Pi imager](https://www.raspberrypi.org/software/ "Raspberry Pi imager") for this.
-
-Operating system: 
-- Raspberry Pi OS Lite (32-Bit)
-
-Settings (Gear icon)
-- Hostname: GuSi
-- activate SSH: use password
-- user and password: "gusi" and a good a strong password 
-- Set up WIFI: Enter the WLAN login data here
-- Select your WiFi and Time Location an Keyboard language
-
-Click on "save" and then on "write" to start the installation.
-
-------------
-
-  **2) SSH Connection**
-Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. You can try ```ping gusi```.
-
-Now access the Raspberry via SSH.
-```ssh gusi@192.168.1.100``` 
-
-------------
-
-  **3) Install 
-
-Fetch latest version of packages:
-  ```sudo apt-get update -y```
-
-Download and install updates for outdated packages:
-```sudo apt-get upgrade -y```
-
-Install Music Player Daemon with ALSA:
-```sudo apt-get install mpd mpc alsa-utils```
-
-Install Git:
-```sudo apt install git```
-
-Install Python 3:
-```sudo apt-get install python3-pip```
-
-Install GPIOzero Library:
-```sudo apt install python3-gpiozero```
-
-------------
-
-  **4) Clone repository and place files:
-
-Clone the Git-files to Raspberry:
-```git clone https://github.com/earlmckay/gusi-radio.git```
-
-Move the rc.local to start the start.py automatically on boot:
-```sudo mv /home/gusi/gusi-radio/rc.local /etc/```
-
-Make the rc.local executable:
-```sudo chmod a+x /etc/rc.local```
-
-Move cleanshutd.conf to the directory:
-```sudo mv /home/gusi/gusi-radio/cleanshutd.conf /etc/```
-
-Create a new file and open it in the editor:
-```sudo nano /etc/modprobe.d/8192cu.conf```
-
-Insert following text:
 ```
-options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
-
-rtw_ips_mode=1
+country=EN
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+ssid="NAME"
+psk="KENNWORT"
+}
 ```
-Open the boot.conf in the editor
-```sudo nano /boot/firmware/config.txt```
+
+Replace <b>NAME</b> and <b>PASSWORD</b> within the quotation marks with the WiFi credentials.
+
+Save the document as a file Save as:  wpa_supplicant.conf
+Make sure that the extension is “.conf” and not “.txt”!
+
+Move the file onto the SD-card, put it back into the radio and start it.
+</div>
+</br>
+
+<hr>
+
+<h3 style='color: #16A085; font-size: 2em;'><img src="images/icon_parts.svg" alt=(DE) style="height:22px"> Part list</h3>
+
+<ul>
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-zero-2-w-4x-1-ghz-512-mb-ram-wlan-bt-rasp-pi-zero2-w-p313902.html?&nbc=1">Raspberry Pi zero</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-gpio-header-40-polig-rm-2-54-farblich-kodiert-rpi-header-cg3-p283342.html?&nbc=1">Raspberry Header CG3</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/steckernetzteil-12-w-5-v-2-4-a-ea1012ahes501-p293278.html?&nbc=1">Power supply unit (5 V with a barrel jack 2.1 / 5.5 mm)</a>
+ 
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-hifiberry-miniamp-rpi-hb-mini-amp-p191036.html?&nbc=1">Hifiberry MiniAMP</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/microsdhc-speicherkarte-32gb-sandisk-ultra-sdsqua4032ggn6ma-p297179.html?&nbc=1">Micro SD Card]</a>
+  
+  <li> 1 x <a href="(https://www.reichelt.de/breitbandlautsprecher-fr-8-ta-10-w-4-ohm-vis-2402-p239748.html?&nbc=1">Small speaker with 10-30 W]</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/led-5-mm-bedrahtet-kaltweiss-7150-mcd-50--led-el-5-7150kw-p164206.html?&nbc=1">LED 5 mm</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/cherry-mx-blue-tastenmodul-schnappbefestigung-cherry-mx1a-e1nn-p202569.html?&nbc=1">Pushbuton (Cherry MX Key)</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/einbaubuchse-zentraleinbau-aussen-5-6-mm-innen-2-1-mm-hebl-21-p8524.html?&nbc=1">Power jack socket</a>
+  
+  <li> 1 x <a href="https://www.reichelt.de/lautsprecherkabel-rot-schwarz-cu-10-m-la-205-10-p9813.html?&nbc=1">Speaker cable (about 0.5 mm²</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/kupferlitze-isoliert-10-m-1-x-0-14-mm-schwarz-litze-sw-p10298.html?&nbc=1">Cable (about 0.14 mm²)</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/micro-usb-stecker-typ-b-5-polig-usb-micro-st-p124013.html?&nbc=1">Micro-USB plug</a>
+
+  <li> 1 x <a href="url">Pan head screw M2.5 6 mm]</a>
+
+  <li> 1 x <a href="url">Pan head screw M2.5 10 mm</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-gpio-header-1-auf-2-40-polig-rm-2-54-rpi-gpio-1to2-p276993.html?&nbc=1">GPIO edge adapter</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/entwicklerboards-dupont-crimp-set-610-teilig-debo-set-dupont-p279901.html?&nbc=1">Dupont crimps set</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/entwicklerboards-drehwinkel-encoder-ky-040-debo-encoder-p282545.html?&nbc=1">Rotarry encoder KY-040</a>
+
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-onoff-shim-rpi-shd-onoff-p272023.html?&nbc=1">SHIM OnOff</a>
+</ul>
+
+Almost everything except the screws can be ordered via this  <a href="https://www.reichelt.de/my/2179350">part list</a>. 
+
+<hr>
+
+<h3 style='color: #16A085; font-size: 2em;'><img src="images/icon_print.svg" alt=(DE) style="height:22px"> 3D-Print files</h3>
+
+The 3D-files can be downloaded at <a href="https://www.printables.com/de/model/459099-gusi-radio">printables.com</a>
 
 
-Add the following lines at the bottom.
+<hr>
 
-``` 
+<h3 style='color: #16A085; font-size: 2em;'><img src="images/icon_software.svg" alt=(DE) style="height:22px"> Software installation</h3>
+
+
+<h3>1) Install the OS</h3>
+
+ Install Raspberry Pi OS lite on the SD card. You can use the tool <a href="https://www.raspberrypi.org/software/">Raspberry Pi imager</a>
+
+<b>Raspberry Pi device:</b><br>
+Raspberry Pi zero / Raspberry Pi zero 2
+
+
+<b>Operating system:</b><br> 
+Raspberry Pi OS Bullseye (64-Bit)
+
+<div class="warning" style='padding:0.8em; background-color:#F1C40F; color:black'>
+Make sure you select "Bullseye" and not "Bookworm" for the Debian version, <br>as the OnOFF SHIM and start.py will not run under Bookworm!
+</div><br>
+
+<b>Storage:</b><br> 
+elect the SD-Card
+
+Klick on the <b>Next</b> button and allow OS customisation.
+
+<b>General</b>
+<li>Hostname: Gusi
+<li>Username: gusi
+<li>Password: your choise
+<li>Set up WIFI: Enter the WiFi login data here
+<li>Select your WiFI country
+<li>Select time location an keyboard layout
+</ul><br><br>
+
+<b>Services</b><br> 
+Enable <b>SSH</b> (password)<br><br>
+
+<hr>
+
+<h3>2) SSH Connection</h3>
+
+
+<color style='color: #16A085'>2.1)</color> Insert the card into the Raspberry and let it boot up. Find out which IP address your Pi got. (You can try ```ping gusi``` in terminal).
+
+
+<color style='color: #16A085'>2.2)</color> Access the Raspberry via SSH:
+```ssh gusi@192.168.1.100```
+
+<hr>
+
+<h3>3) Install the Software</h3> 
+
+<color style='color: #16A085'>3.1)</color> Prepare the configuration file:<br>
+  ```
+  sudo nano /boot/config.txt
+  ```
+
+Comment out the line ```dtparam=audio=off``` by inserting a ‘#’ in front of it. It should look like this: 
+```#dtparam=audio=off``` 
+
+Insert the following code at the end of the file:<br>
+```
 ################## GUSI ################
 # Disable Bluetooth
 dtoverlay=pi3-disable-bt
@@ -167,160 +183,168 @@ dtoverlay=pi3-disable-bt
 dtoverlay=hifiberry-dac
 ```
 
-Open the asound.conf in the editor
-```sudo nano /etc/asound.conf```
+Save the change with ```CTRL``` + ```X``` and confirm with ```Y``` and ```Enter```
 
-Insert following text:
+
+
+<br><color style='color: #16A085'>3.2)</color> Install the required packages <br>
 ```
-pcm.hifiberryMiniAmp {
-    type softvol
-    slave.pcm "plughw:0"
-    control.name "Master"
-    control.card 0
-}
-pcm.!default {
-    type       plug
-    slave.pcm  "hifiberryMiniAmp"
-}
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install -y git mpd mpc alsa-utils python3-pip python3-gpiozero
 ```
 
-------------
-
-  **5) Optimization
-
-Deaktivate swapping:
-
-```sudo systemctl stop dphys-swapfile```
-
-```sudo systemctl disable dphys-swapfile```
-
-
-Deactivate some unused modules:
-
-```sudo systemctl disable keyboard-setup.service```
-
-```sudo systemctl disable triggerhappy.service```
-
-```sudo /usr/bin/tvservice -o```
-
-------------
-
-  **6) Custom settings**
-For English:
-```sudo mv /home/gusi/gusi-radio/EN/mpd.conf /etc/```
-
-```rm -r /home/gusi/gusi-radio/DE```
-
-```sudo systemctl start mpd```
-
-```sudo systemctl enable mpd```
-
-```mpc update```
-
-
-For German:
-```sudo mv /home/gusi/gusi-radio/DE/mpd.conf /etc/```
-
-```rm -r /home/gusi/gusi-radio/EN```
-
-```mpc update```
-
-(Moves the configuration file for the music player, which has the correct paths to the audio data, to the correct location and deletes the unneeded voice data.)
-
-------------
-
-  ***GUSI.py***
-
-Open the gusy.py in the editor:
-```sudo nano /home/gusi/gusi-radio/gusi.py```
-
-Customize radio station:
-
-First, the URLs in the variables must be customized to your preferences. 
-To do this, change the URLs for "RS1", "RS2" and "RS3" in the "VAR DEFINITIONS" area.
-
-If more stations are needed, the list of variables can be extended with "RS4", "RS5" ... .
-Also remember to adjust the amount in the areas "RADIO STATION ORDER" and "ANNOUNCEMENTS ORDER". (Here simply continue the list).
-
-------------
-
-  ***AUTO-WPS.py***
-
-```nano /home/gusi/gusi-radio/auto_wps.py```
-
-Search for (Linie 35):
+<br><color style='color: #16A085'>3.3)</color> Install the required packages <br>
 ```
-print("reset wpa_supplicant.conf")
-new_config = """ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-country=DE
-"""
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install -y git mpd mpc alsa-utils python3-pip python3-gpiozero
+```
+<br><color style='color: #16A085'>3.4)</color> Install the OnOff SHIM for the power control <br>
+```
+curl https://get.pimoroni.com/onoffshim | bash
+``` 
+Let the device restart
+
+<br><color style='color: #16A085'>3.5)</color> Clone the Git repository <br>
+```
+git clone https://github.com/earlmckay/gusi-radio.git
 ```
 
-Replace DE with the required country code
+<br><color style='color: #16A085'>3.6)</color> Make the script executable and run it (choose between German and English):<br>
+<img src="images/flag_de.svg" alt=(DE) style="width:16px"> For German:
+```
+chmod +x /home/gusi/gusi-radio/setup_gusi_DE.sh
+```
+```
+sudo /home/gusi/gusi-radio/setup_gusi_DE.sh
+```
+<br>
 
-------------
+<img src="images/flag_en.svg" alt=(EN) style="width:16px"> For English:
+```
+chmod +x /home/gusi/gusi-radio/setup_gusi_DE.sh
+```
+```
+sudo /home/gusi/gusi-radio/setup_gusi_DE.sh
+```
 
-  **8) Install SHIM OnOFF**
-Install the ON/OFF switch with the manufacturer's code:
-```curl https://get.pimoroni.com/onoffshim | bash```
+<hr>
 
-or:
+<h3>4) Customize the Software</h3> 
 
-Alternatively, move this data to the locations:
-```chmod a+x home/gusi/gusi-radio/onoffshim.sh```
-```bash /home/gusi/gusi-radio/onoffshim.sh```
+<color style='color: #16A085'>4.1)</color> Customise the radio stations in the gusi.py:<br>
 
-------------
 
-## Hardware installation
+```
+sudo nano /home/gusi/gusi-radio/gusi.py
+```
 
-  **01) Prepare Cable**
+Each time the button is pressed, the script switches to the next station (defined in variables S1, S2, S3), and an announcement (s1.mp3, s2.mp3, s3.mp3) is played to indicate which station can now be heard.) The announcements are generic and say “Station one”. 
+
+<b>Customize radio station:</b><br>
+Change the URLs for "S1", "S2" and "S3" in the "VAR DEFINITIONS" area.
+
+<div class="warning" style='padding:0.8em; background-color:#999999; color:black'>
+#---------- VAR DEFINITION ----------#<br>
+S1 = "https://server7.stream.com/stream"<br>
+S2 = "http://www.sw.de:8000/de"<br>
+S3 = "https://streamplus.de/stream.mp3"<br>
+</div><br>
+
+If more stations are needed, the list of variables can be extended with "S4", "S5" ... .<br>
+
+<b>Set order:</b><br>
+By listing the channels defined above, you can choose which should be included in the rotation and in which order.
+<div class="warning" style='padding:0.8em; background-color:#999999; color:black'>
+#---------- RADIO STATIONS ORDER ----------#<br>
+stations = [S1, S2, S3]<br>
+</div><br>
+
+<b>Alignment of the announcements:</b><br>
+Sort the order of the announcements according to the order of the stations (S1 = s1.mp3). <br>
+Also make sure that the number of stations and announcements is the same! 
+<div class="warning" style='padding:0.8em; background-color:#999999; color:black'>
+#---------- ANNOUNCEMENTS ORDER ----------#<br>
+announcements = ["s1.mp3", "s2.mp3", "s3.mp3"]
+</div><br>
+<b>Customized announcements:</b><br>
+You can, of course, generate your own announcements (by recording them yourself or using TTS). For better identification, the name of the station can be played, for example.<br><br>
+
+You can place the newly generated announcements under the following path: 
+```/var/lib/mpd/music/```
+<br>(This folder also contains all other radio announcements (e.g. error announcements). You can also regenerate and replace these if necessary.)
+
+As soon as there is a change in the music folder, you must update the database:
+```
+mpc update
+```
+
+
+<br>
+
+<color style='color: #16A085'>4.2)</color> Customise the WiFi Country in the auto-wps.py:<br>
+
+```
+nano /home/gusi/gusi-radio/auto_wps.py
+```
+
+Search for "country" (Linie 35):
+
+
+<div class="warning" style='padding:0.8em; background-color:#999999; color:black'>
+print("reset wpa_supplicant.conf")<br>
+new_config = """ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev<br>
+update_config=1<br>
+country=<b>DE</b><br>
+</div><br>
+
+Replace DE with the required country code (for example "GB")
+
+<hr>
+
+<h3 style='color: #16A085; font-size: 2em;'><img src="images/icon_assembly.svg" alt=(DE) style="height:22px"> Hardware installation</h3>
+
+<h3>5.1) Prepare Cable</h3>
 Following cable lengths are required:
-- Loudspeaker: 2 x 120 mm
-- Rotary encoder: 5 x 200 mm
-- Pushbutton: 2 x 200 mm
-- OnOff SHIM: 2 x 100 mm
-- LED: 2 x 160 mm
+<ul>
+<li> Loudspeaker: 2 x 120 mm
+<li> Rotary encoder: 5 x 200 mm
+<li> Pushbutton: 2 x 200 mm
+<li> OnOff SHIM: 2 x 100 mm
+<li> LED: 2 x 160 mm
+</ul>
+
 
 Insulate both ends by approx. 3 mm.
 
-------------
+<hr>
 
-  **02) rotary encoder**
+<h3>5.2) Rotary encoder</h3>
 The Rotary Encoder has a total of 5 pins:
-- GRD: Ground
-- +: voltage
-- SW: Push
-- CLK: Primary rotation
-- DT: Phase shifted rotation 
+
+<ul>
+<li>  GRD: Ground
+<li>  +: voltage
+<li>  SW: Push
+<li>  CLK: Primary rotation
+<li>  DT: Phase shifted rotation 
+</ul>
 
 Crimp the 5 prepared cables with a female Dupon connector on each side and connect the cables to the Rotary Encoder.
 
 ![](images/install_rotary_encoder_cable.jpg)
 
-------------
-
-
-  **03) prepare the pushbutton**
-
+<h3>5.3) Prepare the pushbutton</h3>
 For the pushbutton, one part of the cables must be soldered to the button, the other ends get a female Dupon connector.
 Crimp the 5 prepared cables with a female Dupon connector on each side and connect the cables to the Rotary Encoder.
 
 ![](images/install_button_cable.jpg)
 
-------------
-
-  **04) insert the rotary control and the button**
-
+<h3>5.4) Insert the rotary control and the button</h3>
 Now you can screw the rotary encoder into the middle hole of the case. Make sure that it sits straight, otherwise the knob will wobble.
 The push button is inserted into the outside of the case. It should snap into place. 
 
 ![](images/install_buttons.jpg)
 
-------------
 
-  **05) power supply**
+<h3>5.5) Power supply</h3>
 
 Before you insert the power socket, solder the cables first. This is more comfortable and avoids damaging the plastic housing. 
 Seen from the back, the positive pole is on the left and the negative pole on top.
@@ -333,7 +357,7 @@ The left contact is the positive pole, the one on the right side is the negative
 
 ------------
 
-  **06) loudspeaker**
+ <h3>5.6) Loudspeaker</h3>
 
 First the easy part. Solder two cables to the two speaker contacts. 
 The other ends of the cables do not need to be worked on, as they will be clamped into the amplifier later. 
@@ -345,8 +369,7 @@ Now place the speaker in the cabinet on the grille and fix it with the 6 mm scre
 
 ------------
 
-  **07) LED**
-
+ <h3>5.7) LED</h3>
 For the LED you need the two prepared cables and two female Dupon connectors, which are crimped on one side of the cable. 
 The other sides have to be soldered to the LED itself. I used here for the anode (longer pin of the LED) the red cable and for the shorter side (cathode) the black cable. To avoid a short circuit, a heat shrink tube can be used.
 Now push the LED into the holder.
@@ -355,18 +378,15 @@ Now push the LED into the holder.
 
 ------------
 
-  **08) SHIM OnOff**
-
-
+ <h3>5.8) OnOff SHIM</h3>
 The board comes with optional female connectors, which I also used. For the two button contacts I cut and soldered two male Dupon connectors.
 The pre-assembled cables can now be equipped with a male Dupon connector on one end and a female connector on the other end. 
 
 ![](images/install_shim_onoff_cable.jpg)
 
-------------
+<hr>
 
-  **09) Connection**
-
+ <h3>5.9) Connection</h3>
 First, the Raspberry can be screwed to the lower base plate.
 Then the GPIO corner adapter can be plugged on, followed by the MiniAmp.
 
@@ -383,5 +403,45 @@ Then everything can be connected one by one.
 ![](images/GuSi_fzz.png)
 ![](images/install_components_together.jpg)
 
-------------
+<hr>
+
 Finally, I would like to thank [Robert Nickel](https://github.com/Robert-Nickel) for his support, as well to [Notification Sounds](https://notificationsounds.com/) for providing the sounds.
+
+
+<style>
+h1 {
+  color: #16A085;
+  font-size: 6em;
+  border-bottom: 0;
+}
+
+h2 {
+  color: #16A085;
+  font-size: 2em;
+  border-bottom: 0;
+}
+
+h3 {
+  color: #16A085;
+}
+
+/* unvisited link */
+a:link {
+  color: #16A085;
+}
+
+/* visited link */
+a:visited {
+  color: #16A085;
+}
+
+/* mouse over link */
+a:hover {
+  color: #16A085;
+}
+
+/* selected link */
+a:active {
+  color: #16A085;
+}
+</style>

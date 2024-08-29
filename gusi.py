@@ -1,7 +1,7 @@
 import time
 import os
 import threading
-from gpiozero import Button, RotaryEncoder
+from gpiozero import Button, RotaryEncoder, LED
 from signal import pause
 from subprocess import check_call
 from urllib.request import urlopen
@@ -11,6 +11,7 @@ current_station = 0
 vol = 30
 btn_clk = RotaryEncoder(23, 27, max_steps=4)
 btn_sw = Button(22)
+led = LED(14)
 S1 = "https://server7.streamserver24.com:61424/stream"
 S2 = "http://www.segenswelle.de:8000/deutsch"
 S3 = "https://server23644.streamplus.de/stream.mp3"
@@ -51,6 +52,7 @@ def vol_down():
         os.system("mpc volume " + str(vol))
 
 #---------- START ----------#
+led.on()
 os.system("mpc clear; mpc repeat off; mpc volume " + str(vol))
 play(current_station)
 
