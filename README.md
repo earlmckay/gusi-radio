@@ -75,9 +75,9 @@ Move the file onto the SD-card, put it back into the radio and start it.
  
   <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-hifiberry-miniamp-rpi-hb-mini-amp-p191036.html?&nbc=1">Hifiberry MiniAMP</a>
   
-  <li> 1 x <a href="https://www.reichelt.de/microsdhc-speicherkarte-32gb-sandisk-ultra-sdsqua4032ggn6ma-p297179.html?&nbc=1">Micro SD Card]</a>
+  <li> 1 x <a href="https://www.reichelt.de/microsdhc-speicherkarte-32gb-sandisk-ultra-sdsqua4032ggn6ma-p297179.html?&nbc=1">Micro SD Card</a>
   
-  <li> 1 x <a href="(https://www.reichelt.de/breitbandlautsprecher-fr-8-ta-10-w-4-ohm-vis-2402-p239748.html?&nbc=1">Small speaker with 10-30 W]</a>
+  <li> 1 x <a href="(https://www.reichelt.de/breitbandlautsprecher-fr-8-ta-10-w-4-ohm-vis-2402-p239748.html?&nbc=1">Small speaker with 10-30 W</a>
   
   <li> 1 x <a href="https://www.reichelt.de/led-5-mm-bedrahtet-kaltweiss-7150-mcd-50--led-el-5-7150kw-p164206.html?&nbc=1">LED 5 mm</a>
   
@@ -91,7 +91,7 @@ Move the file onto the SD-card, put it back into the radio and start it.
 
   <li> 1 x <a href="https://www.reichelt.de/micro-usb-stecker-typ-b-5-polig-usb-micro-st-p124013.html?&nbc=1">Micro-USB plug</a>
 
-  <li> 1 x <a href="url">Pan head screw M2.5 6 mm]</a>
+  <li> 1 x <a href="url">Pan head screw M2.5 6 mm</a>
 
   <li> 1 x <a href="url">Pan head screw M2.5 10 mm</a>
 
