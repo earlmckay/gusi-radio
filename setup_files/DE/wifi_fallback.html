@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GUSI WLAN Setup</title>
+    <link rel="icon" type="image/x-icon" href="/source/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f3f3f3;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .bg-image {
+            position: fixed;
+            bottom: 30px;
+            right: 0;
+            z-index: -1;
+            background-image: url("http://192.168.4.1/source/bg.png");
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            background-size: contain;
+            width: 100%;
+            height: 60vh;
+            min-width: 300px;
+            max-width: 2500px;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 0 20px 100px 20px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        select, input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        button:hover {
+            background: #02c66f;
+        }
+
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .error {
+            background: #f3f3f3;
+            color: #c62828;
+        }
+
+        .success {
+            background: #f3f3f3;
+            color: #02c66f;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Füge einen Spinner hinzu */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #4CAF50;
+            animation: spin 1s ease-in-out infinite;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .restart-message {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 50px 0 30px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            margin: 0 30px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #333;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>        
+    </div>
+    <div class="bg-image"></div>
+    
+    <div class="container">
+        
+        <h1>WLAN Setup</h1>
+        
+        <form id="wifiForm">
+            <div class="form-group">
+                <label for="ssid">WLAN Netzwerk:</label>
+                <select id="ssid" name="ssid" required>
+                    <option value="">Bitte Netzwerk wählen...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" id="submitButton">Speichern</button>
+            </div>
+        </form>
+        <div id="status" class="status" style="display: none;"></div>
+        <div id="loading" class="loading"><span class="spinner"></span> Suche nach Netzwerken</div>
+        
+        <div id="restartMessage" class="restart-message">
+            <h3>Konfiguration gespeichert!</h3>
+            <p>Das Gerät startet jetzt neu und verbindet sich mit Ihrem WLAN-Netzwerk.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <a href="https://github.com/earlmckay/gusi-radio">GitHub</a>
+        <a href="https://paypal.me/tip4mn?country.x=DE&locale.x=de_DE">Obolus</a>
+    </div>
+
+    <script>
+        // Flag to track if we're in the process of saving and restarting
+        let isRestarting = false;
+        
+        function showStatus(message, isError = false) {
+            if (isRestarting) return; // Don't show scan errors during restart
+            
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.style.display = 'block';
+            status.className = 'status ' + (isError ? 'error' : 'success');
+            
+            // Auto-hide success messages after 5 seconds
+            if (!isError) {
+                setTimeout(() => {
+                    status.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        function scanNetworks() {
+            if (isRestarting) return; // Don't scan during restart
+            
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+            
+            fetch('/scan')
+                .then(response => response.json())
+                .then(networks => {
+                    const select = document.getElementById('ssid');
+                    const currentValue = select.value; // Save current selection
+                    select.innerHTML = '<option value="">Bitte wählen...</option>';
+                    networks.forEach(network => {
+                        const option = document.createElement('option');
+                        option.value = network;
+                        option.textContent = network;
+                        // Restore selection if it exists in new list
+                        if (network === currentValue) {
+                            option.selected = true;
+                        }
+                        select.appendChild(option);
+                    });
+                    loading.style.display = 'none';
+                })
+                .catch(error => {
+                    if (!isRestarting) {
+                        showStatus('Fehler beim Suchen der Netzwerke', true);
+                    }
+                    loading.style.display = 'none';
+                });
+        }
+
+        function showRestartMessage() {
+            document.getElementById('wifiForm').style.display = 'none';
+            document.getElementById('status').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('restartMessage').style.display = 'block';
+            isRestarting = true;
+            
+            // In case the restart takes longer, show countdown
+            let countdown = 60;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('restartMessage').innerHTML += 
+                        '<p style="color:#c62828">Es scheint, dass der Neustart länger dauert als erwartet. ' +
+                        'Bitte überprüfen Sie, ob Ihr Gerät neu gestartet ist und sich mit Ihrem WLAN verbunden hat.</p>';
+                }
+            }, 1000);
+        }
+
+        document.getElementById('wifiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner"></span> Einstellungen speichern...';
+            
+            const formData = new FormData(this);
+            const data = new URLSearchParams();
+            for (const pair of formData) {
+                data.append(pair[0], pair[1]);
+            }
+
+            fetch('/configure', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showRestartMessage();
+                } else {
+                    showStatus(data.message || 'Fehler beim Speichern der Konfiguration', true);
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Speichern';
+                }
+            })
+            .catch(error => {
+                showStatus('Verbindungsfehler', true);
+                submitButton.disabled = false;
+                submitButton.textContent = 'Speichern';
+            });
+        });
+
+        // Initial network scan
+        scanNetworks();
+        
+        // Scan-Timer - nur aktiv, wenn nicht im Restart-Modus
+        let scanTimer = setInterval(() => {
+            if (!isRestarting) {
+                scanNetworks();
+            } else {
+                clearInterval(scanTimer); // Stop scanning when restarting
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

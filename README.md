@@ -71,7 +71,7 @@ Move the file onto the SD-card, put it back into the radio and start it.
   
   <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-gpio-header-40-polig-rm-2-54-farblich-kodiert-rpi-header-cg3-p283342.html?&nbc=1">Raspberry Header CG3</a>
   
-  <li> 1 x <a href="https://www.reichelt.de/steckernetzteil-12-w-5-v-2-4-a-ea1012ahes501-p293278.html?&nbc=1">Power supply unit (5 V with a barrel jack 2.1 / 5.5 mm)</a>
+  <li> 1 x <a href="https://www.reichelt.de/de/de/shop/produkt/raspberry_pi_-_netzteil_5_1_v_3_0_a_usb_type-c_eu-stecker_s-260010">Power supply unit (5 V with USB-C)</a>
  
   <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-hifiberry-miniamp-rpi-hb-mini-amp-p191036.html?&nbc=1">Hifiberry MiniAMP</a>
   
@@ -81,9 +81,9 @@ Move the file onto the SD-card, put it back into the radio and start it.
   
   <li> 1 x <a href="https://www.reichelt.de/led-5-mm-bedrahtet-kaltweiss-7150-mcd-50--led-el-5-7150kw-p164206.html?&nbc=1">LED 5 mm</a>
   
-  <li> 1 x <a href="https://www.reichelt.de/cherry-mx-blue-tastenmodul-schnappbefestigung-cherry-mx1a-e1nn-p202569.html?&nbc=1">Pushbuton (Cherry MX Key)</a>
+  <li> 1-5 x <a href="https://www.reichelt.de/cherry-mx-blue-tastenmodul-schnappbefestigung-cherry-mx1a-e1nn-p202569.html?&nbc=1">Cherry MX Key (Depending on the model of the radio) </a>
   
-  <li> 1 x <a href="https://www.reichelt.de/einbaubuchse-zentraleinbau-aussen-5-6-mm-innen-2-1-mm-hebl-21-p8524.html?&nbc=1">Power jack socket</a>
+  <li> 1 x <a href="https://de.aliexpress.com/item/1005007469640237.html">USB-C Power jack socket</a>
   
   <li> 1 x <a href="https://www.reichelt.de/lautsprecherkabel-rot-schwarz-cu-10-m-la-205-10-p9813.html?&nbc=1">Speaker cable (about 0.5 mm²</a>
 
@@ -91,9 +91,11 @@ Move the file onto the SD-card, put it back into the radio and start it.
 
   <li> 1 x <a href="https://www.reichelt.de/micro-usb-stecker-typ-b-5-polig-usb-micro-st-p124013.html?&nbc=1">Micro-USB plug</a>
 
-  <li> 1 x <a href="url">Pan head screw M2.5 6 mm</a>
+  <li> 4 x <a href="url">Pan head screw M2.5 5 mm</a>
 
-  <li> 1 x <a href="url">Pan head screw M2.5 10 mm</a>
+  <li> 4 x <a href="url">Pan head screw M3 5 mm</a>
+
+  <li> 4 x <a href="url">Pan head screw M3 8 or 10 mm</a>
 
   <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-gpio-header-1-auf-2-40-polig-rm-2-54-rpi-gpio-1to2-p276993.html?&nbc=1">GPIO edge adapter</a>
 
@@ -101,7 +103,7 @@ Move the file onto the SD-card, put it back into the radio and start it.
 
   <li> 1 x <a href="https://www.reichelt.de/entwicklerboards-drehwinkel-encoder-ky-040-debo-encoder-p282545.html?&nbc=1">Rotarry encoder KY-040</a>
 
-  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-onoff-shim-rpi-shd-onoff-p272023.html?&nbc=1">SHIM OnOff</a>
+  <li> 1 x <a href="https://www.reichelt.de/raspberry-pi-shield-onoff-shim-rpi-shd-onoff-p272023.html?&nbc=1">OnOff SHIM</a>
 </ul>
 
 Almost everything except the screws can be ordered via this  <a href="https://www.reichelt.de/my/2179350">part list</a>. 
@@ -110,7 +112,13 @@ Almost everything except the screws can be ordered via this  <a href="https://ww
 
 <h3 style='color: #16A085; font-size: 2em;'><img src="images/icon_print.svg" alt=(DE) style="height:22px"> 3D-Print files</h3>
 
-The 3D-files can be downloaded at <a href="https://www.printables.com/de/model/459099-gusi-radio">printables.com</a>
+The 3D-files can be downloaded at Printables:
+
+<a href="https://www.printables.com/de/model/459099-gusi-radio">GUSI-Radio BM1K</a>
+
+<a href="https://www.printables.com/de/model/459099-gusi-radio">GUSI-Radio BM2K</a>
+
+<a href="https://www.printables.com/de/model/459099-gusi-radio">GUSI-Radio RM5K</a>
 
 
 <hr>
@@ -189,41 +197,24 @@ Save the change with ```CTRL``` + ```X``` and confirm with ```Y``` and ```Enter`
 
 <br><color style='color: #16A085'>3.2)</color> Install the required packages <br>
 ```
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install -y git mpd mpc alsa-utils python3-pip python3-gpiozero
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install -y git mpd mpc alsa-utils python3-pip python3-gpiozero hostapd dnsmasq
 ```
 
-<br><color style='color: #16A085'>3.3)</color> Install the required packages <br>
-```
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get install -y git mpd mpc alsa-utils python3-pip python3-gpiozero
-```
-<br><color style='color: #16A085'>3.4)</color> Install the OnOff SHIM for the power control <br>
-```
-curl https://get.pimoroni.com/onoffshim | bash
-``` 
-Let the device restart
-
-<br><color style='color: #16A085'>3.5)</color> Clone the Git repository <br>
+<br><color style='color: #16A085'>3.3)</color> Clone the Git repository <br>
 ```
 git clone https://github.com/earlmckay/gusi-radio.git
 ```
 
-<br><color style='color: #16A085'>3.6)</color> Make the script executable and run it (choose between German and English):<br>
-<img src="images/flag_de.svg" alt=(DE) style="width:16px"> For German:
+<br><color style='color: #16A085'>3.4)</color> Make the script executable and run it
 ```
-chmod +x /home/gusi/gusi-radio/setup_gusi_DE.sh
+chmod +x /home/gusi/gusi-radio/setup_gusi.sh && sudo /home/gusi/gusi-radio/setup_gusi.sh
 ```
-```
-sudo /home/gusi/gusi-radio/setup_gusi_DE.sh
-```
-<br>
 
-<img src="images/flag_en.svg" alt=(EN) style="width:16px"> For English:
+<br><color style='color: #16A085'>3.5)</color> Install the OnOff SHIM for the power control <br>
 ```
-chmod +x /home/gusi/gusi-radio/setup_gusi_DE.sh
-```
-```
-sudo /home/gusi/gusi-radio/setup_gusi_DE.sh
-```
+curl https://get.pimoroni.com/onoffshim | bash
+``` 
+Let the device restart
 
 <hr>
 

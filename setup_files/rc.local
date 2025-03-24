@@ -1,0 +1,24 @@
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+################## GUSI ################
+
+DEFAULT_VOLUME_FILE="/home/gusi/user_settings/default_volume.txt"
+if [ -f "$DEFAULT_VOLUME_FILE" ]; then
+  VOLUME=$(cat "$DEFAULT_VOLUME_FILE")
+else
+  VOLUME=30
+fi
+
+mpc clear
+mpc repeat off
+mpc add boot.mp3
+mpc volume $VOLUME
+mpc play
+sleep 2
+python3 /home/gusi/gusi-radio/start.py
+
+exit 0

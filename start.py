@@ -3,10 +3,11 @@ import subprocess
 import re
 import socket
 from datetime import datetime
-from gpiozero import LED, Button
+from gpiozero import LED, Button, RotaryEncoder
 
 led = LED(14)
-button = Button(22)
+btn_sw = Button(22)
+btn_clk = RotaryEncoder(23, 24, max_steps=4)
 connection_attempts_local = 0
 connection_attempts_internet = 0
 connection_attempts_dhcp = 0
@@ -15,8 +16,8 @@ def log_message(message):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{timestamp}] {message}")
 
+# Collects detailed network information
 def get_network_info():
-    """Collects detailed network information"""
     info = {}
     try:
         # WLAN Interface Status
@@ -48,11 +49,8 @@ def get_network_info():
     
     return info
 
+# Check internet connectivity using DNS
 def check_internet_connection():
-    """
-    Check internet connectivity using DNS resolution and ping
-    Returns True if connection is established, False otherwise
-    """
     global connection_attempts_internet
     log_message("Checking internet connection...")
     
@@ -75,11 +73,8 @@ def check_internet_connection():
             time.sleep(5)
     return False
 
+# Check local network
 def check_local_network():
-    """
-    Check local network connectivity and collect network information
-    Returns True if local connection is established, False otherwise
-    """
     global connection_attempts_local
     log_message("Checking local network...")
     
@@ -104,11 +99,8 @@ Network Status:
         time.sleep(8)
     return False
 
+#C Check DHCP
 def check_DHCP_daemon():
-    """
-    Check and restart DHCP service if necessary
-    Returns True if service is running, False after max attempts
-    """
     global connection_attempts_dhcp
     while connection_attempts_dhcp < 4:
         log_message("Checking DHCP service...")
@@ -130,13 +122,30 @@ def run_auto_wps_script():
     subprocess.Popen(["python3", "/home/gusi/gusi-radio/auto_wps.py"])
     quit()
 
+def run_auto_fallback_script():
+    """Start the accespoint fallback script"""
+    log_message("Starting fallback script...")
+    subprocess.Popen(["python3", "/home/gusi/gusi-radio/wifi_fallback.py"])
+    quit()
+
+def wait_for_input(timeout):
+    start_time = time.time()
+    initial_steps = btn_clk.steps
+    
+    while (time.time() - start_time) < timeout:
+        if btn_sw.is_pressed:
+            return "button"
+        if btn_clk.steps != initial_steps:
+            return "rotary"
+        time.sleep(0.1)
+    
+    return None
+
 def main():
     """
-    Main function controlling the network connection flow:
     1. Check DHCP service
     2. Check local network connection
     3. Check internet connection
-    4. Handle various error cases with audio feedback
     """
     log_message("=== Starting Network Diagnostics ===")
     led.blink(on_time=0.6, off_time=0.6)
@@ -146,38 +155,37 @@ def main():
             if check_internet_connection():
                 led.on()
                 time.sleep(1)
+                ### Feature to update scripts for clients via gitlab ###
+                #log_message("Checking online for a GUSI Update...")
+                #subprocess.Popen(["python3", "/home/gusi/gusi-radio/user_settings/updater.py"])
                 log_message("All checks successful, starting radio...")
                 subprocess.Popen(["python3", "/home/gusi/gusi-radio/gusi.py"])
                 quit()
             else:
-                log_message("No internet despite local connection")
+                log_message("Local network: OK --- Internet connection: Error")
                 subprocess.call(["mpc", "clear"])
                 subprocess.call(["mpc", "repeat", "off"])
                 subprocess.call(["mpc", "add", "wifi_no_internet.mp3"])
                 subprocess.call(["mpc", "play"])
                 log_message("Waiting for button press...")
-                button.wait_for_press(timeout=60)
-                if button.is_pressed:
+                btn_sw.wait_for_press(timeout=60)
+                if btn_sw.is_pressed:
                     led.on()
-                    subprocess.call(["mpc", "clear"])
-                    subprocess.call(["mpc", "repeat", "off"])
-                    subprocess.call(["mpc", "add", "wifi_wps_search.mp3"])
-                    subprocess.call(["mpc", "play"])
-                    time.sleep(12)
-                    run_auto_wps_script()
+                    run_auto_fallback_script()
                 subprocess.call(["sudo", "shutdown", "-h", "now"])
         else:
-            log_message("No local network connection")
+            log_message("Local network: Error --- Internet connection: Error")
             subprocess.call(["mpc", "clear"])
             subprocess.call(["mpc", "repeat", "off"])
             subprocess.call(["mpc", "add", "wifi_no_router.mp3"])
             subprocess.call(["mpc", "add", "waiting.mp3"])
             subprocess.call(["mpc", "play"])
             led.blink(on_time=1, off_time=1)
-            log_message("Waiting for button press...")
-            button.wait_for_press(timeout=240)
-
-            if button.is_pressed:
+            log_message("Waiting for interaction...")
+            
+            input_type = wait_for_input(timeout=240)
+            
+            if input_type == "button":
                 led.on()
                 subprocess.call(["mpc", "clear"])
                 subprocess.call(["mpc", "repeat", "off"])
@@ -185,14 +193,22 @@ def main():
                 subprocess.call(["mpc", "play"])
                 time.sleep(12)
                 run_auto_wps_script()
-            
-            log_message("Timeout: No user interaction")
-            subprocess.call(["mpc", "clear"])
-            subprocess.call(["mpc", "repeat", "off"])
-            subprocess.call(["mpc", "add", "wifi_no_interaction.mp3"])
-            subprocess.call(["mpc", "play"])
-            time.sleep(40)
-            subprocess.call(["sudo", "shutdown", "-h", "now"])
+            elif input_type == "rotary":
+                led.on()
+                subprocess.call(["mpc", "clear"])
+                subprocess.call(["mpc", "repeat", "off"])
+                subprocess.call(["mpc", "add", "wifi_hotspot.mp3"])
+                subprocess.call(["mpc", "add", "waiting.mp3"])
+                subprocess.call(["mpc", "play"])
+                run_auto_fallback_script()
+            else:
+                log_message("Timeout: No user interaction")
+                subprocess.call(["mpc", "clear"])
+                subprocess.call(["mpc", "repeat", "off"])
+                subprocess.call(["mpc", "add", "wifi_no_interaction.mp3"])
+                subprocess.call(["mpc", "play"])
+                time.sleep(40)
+                subprocess.call(["sudo", "shutdown", "-h", "now"])
 
 if __name__ == "__main__":
     main()
