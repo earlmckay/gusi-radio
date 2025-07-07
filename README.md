@@ -207,7 +207,7 @@ git clone https://github.com/earlmckay/gusi-radio.git
 
 <br><color style='color: #16A085'>3.4)</color> Make the script executable and run it
 ```
-chmod +x /home/gusi/gusi-radio/setup_gusi.sh && sudo /home/gusi/gusi-radio/setup_gusi.sh
+chmod +x /home/gusi/gusi-radio/setup_files/setup_gusi.sh && sudo /home/gusi/gusi-radio/setup_files/setup_gusi.sh
 ```
 
 <br><color style='color: #16A085'>3.5)</color> Install the OnOff SHIM for the power control <br>

@@ -1,3 +1,16 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
 # Print the IP address
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
@@ -6,7 +19,7 @@ fi
 
 ################## GUSI ################
 
-DEFAULT_VOLUME_FILE="/home/gusi/user_settings/default_volume.txt"
+DEFAULT_VOLUME_FILE="/home/gusi/gusi-radio/user_settings/default_volume.txt"
 if [ -f "$DEFAULT_VOLUME_FILE" ]; then
   VOLUME=$(cat "$DEFAULT_VOLUME_FILE")
 else
@@ -19,6 +32,6 @@ mpc add boot.mp3
 mpc volume $VOLUME
 mpc play
 sleep 2
-python3 /home/gusi/gusi-radio/start.py
+sudo python3 /home/gusi/gusi-radio/start.py
 
 exit 0

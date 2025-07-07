@@ -116,6 +116,24 @@ def check_DHCP_daemon():
             return True
     return False
 
+### Check if only 127.0.0.1 as DNS server. If yes, fix it ###
+def fix_resolv_conf_if_broken():
+    with open("/etc/resolv.conf", "r") as f:
+        lines = f.readlines()
+
+    nameservers = [line for line in lines if line.startswith("nameserver")]
+    only_localhost = all("127.0.0.1" in line for line in nameservers)
+
+    if only_localhost:
+        log_message("Only 127.0.0.1 found as DNS server. Replace resolv.conf with public servers")
+        try:
+            with open("/etc/resolv.conf", "w") as f:
+                f.write("nameserver 8.8.8.8\nnameserver 1.1.1.1\n")
+            log_message("resolv.conf successfully replaced.")
+        except Exception as e:
+            log_message(f"Error replacing resolv.conf: {e}")
+
+
 def run_auto_wps_script():
     """Start the WPS configuration script"""
     log_message("Starting WPS script...")
@@ -149,7 +167,8 @@ def main():
     """
     log_message("=== Starting Network Diagnostics ===")
     led.blink(on_time=0.6, off_time=0.6)
-    
+    fix_resolv_conf_if_broken()
+
     if check_DHCP_daemon():
         if check_local_network():
             if check_internet_connection():

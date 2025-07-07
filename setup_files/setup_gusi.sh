@@ -111,20 +111,13 @@ install() {
     sudo mv "/home/gusi/gusi-radio/setup_files/$LANGUAGE_CODE/wifi_fallback.py" /home/gusi/gusi-radio/wifi-setup/
     sudo mv "/home/gusi/gusi-radio/setup_files/$LANGUAGE_CODE/"* /var/lib/mpd/music/
     
-    echo "Process optimization"
-    sudo systemctl stop dphys-swapfile
-    sudo systemctl disable dphys-swapfile
-    sudo systemctl disable keyboard-setup.service
-    sudo systemctl disable triggerhappy.service
-    sudo /usr/bin/tvservice -o
-    
     echo "Set permission"
     sudo chmod +x /etc/rc.local
     sudo chmod -R g+w /var/lib/mpd
     sudo chmod -R g+w /var/run/mpd
     sudo chmod +x /home/gusi/gusi-radio/wifi-setup/wifi_fallback.py
     sudo chmod 644 /home/gusi/gusi-radio/wifi-setup/wifi_fallback.html
-    sudo chmod +x /home/gusi/gusi-radio/wifi-setup/auto-wps.py
+    sudo chmod +x /home/gusi/gusi-radio/wifi-setup/auto_wps.py
     sudo chmod +x /home/gusi/gusi-radio/gusi.py
     sudo chmod +x /home/gusi/gusi-radio/start.py
 
@@ -144,6 +137,11 @@ install() {
     echo "Refresh MPD"
     mpc update
 
+    echo "Process optimization"
+    sudo systemctl stop dphys-swapfile
+    sudo systemctl disable dphys-swapfile
+    sudo systemctl disable keyboard-setup.service
+    sudo systemctl disable triggerhappy.service
 
     echo "Installation completed successfully!"
     echo "Next, please install the OnOffSHIM with the command \"curl https://get.pimoroni.com/onoffshim | bash\"."
@@ -157,6 +155,7 @@ install() {
     sudo rm -r /home/gusi/gusi-radio/README.md 2>/dev/null
 
     (sleep 2 && sudo rm -rf /home/gusi/gusi-radio/setup_files) &
+}
 
 # Main
 echo "GuSi installation script"

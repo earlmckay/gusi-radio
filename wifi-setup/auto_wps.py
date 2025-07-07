@@ -38,10 +38,6 @@ with open("/etc/wpa_supplicant/wpa_supplicant.conf", "w") as f:
     f.write(new_config)
 time.sleep(5)
 
-#print("set wifi region")
-#subprocess.call(["sudo", "iw", "reg", "set", "DE"])
-#time.sleep(5)
-
 print("START wpa_supplicant")
 subprocess.run(["sudo", "wpa_supplicant", "-B", "-i", "wlan0", "-c", "/etc/wpa_supplicant/wpa_supplicant.conf"])
 
@@ -56,7 +52,6 @@ while connection_attempts < 4:
         # scan networks on interface wlan0, to see some nice networks
         print("scanning network")
         subprocess.check_output(["wpa_cli", "-i", "wlan0", "scan"])
-        #works better with some sleep, dunno why
         time.sleep(1)
         
         #get and decode results
@@ -97,7 +92,7 @@ while connection_attempts < 4:
                 subprocess.call(["mpc", "add", "wifi_wps_successful.mp3"])
                 subprocess.call(["mpc", "play"])
                 subprocess.call(["mpc", "repeat", "off"])
-                time.sleep(34)
+                time.sleep(26)
                 os.system("python3 /home/gusi/gusi-radio/gusi.py")
                 quit()
                 break
