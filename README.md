@@ -5,7 +5,8 @@
 
 Reduced to the essentials – open to everything.
 
-GuSi (“<b>Gu</b>tes <b>Si</b>gnal”) is an Internet radio that specifically avoids unnecessary complexity. No complicated menus – just switch on and listen. Ideal for seniors, children and purists.
+GuSi (“<b>Gu</b>tes <b>Si</b>gnal”) is an Internet radio that specifically avoids unnecessary complexity. 
+No complicated menus – just switch on and listen. Ideal for seniors, children and purists.
 
 <h3>You can find all information about the function and DIY instructions on <a href="https://gusi-radio.de/en/home-english/">www.gusi-radio.de</a>.</h3>
 
@@ -18,42 +19,3 @@ A short demonstration of the radio:
 </br>
 
 Finally, I would like to thank [Robert Nickel](https://github.com/Robert-Nickel) for his support, as well to [Notification Sounds](https://notificationsounds.com/) for providing the sounds.
-
-
-<style>
-h1 {
-  color: #16A085;
-  font-size: 6em;
-  border-bottom: 0;
-}
-
-h2 {
-  color: #16A085;
-  font-size: 2em;
-  border-bottom: 0;
-}
-
-h3 {
-  color: #16A085;
-}
-
-/* unvisited link */
-a:link {
-  color: #16A085;
-}
-
-/* visited link */
-a:visited {
-  color: #16A085;
-}
-
-/* mouse over link */
-a:hover {
-  color: #16A085;
-}
-
-/* selected link */
-a:active {
-  color: #16A085;
-}
-</style>
