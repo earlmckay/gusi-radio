@@ -97,7 +97,7 @@ def play_station_1():
     if connection_timer is not None:
         connection_timer.cancel()
         connection_timer = None 
-    os.system("mpc stop; mpc clear; mpc add godi_offline.mp3")
+    os.system("mpc stop; mpc clear; mpc add ann_godi_offline.mp3")
     connect_godi()
 
 def play_station_2():
@@ -106,7 +106,7 @@ def play_station_2():
     if connection_timer is not None:
         connection_timer.cancel()
         connection_timer = None    
-    os.system("mpc stop; mpc clear; mpc add dwg_de.mp3; mpc add " + DWG_DE + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_dwg_de.mp3; mpc add " + DWG_DE + "; mpc play")
     check_and_set_timer()
 
 def play_station_3():
@@ -115,7 +115,7 @@ def play_station_3():
     if connection_timer is not None:
         connection_timer.cancel()
         connection_timer = None    
-    os.system("mpc stop; mpc clear; mpc add sw_ru.mp3; mpc add " + SW_RU + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_sw_ru.mp3; mpc add " + SW_RU + "; mpc play")
     check_and_set_timer()
 
 def play_station_4():
@@ -124,7 +124,7 @@ def play_station_4():
     if connection_timer is not None:
         connection_timer.cancel()
         connection_timer = None    
-    os.system("mpc stop; mpc clear; mpc add sw_de.mp3; mpc add " + SW_DE + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_sw_de.mp3; mpc add " + SW_DE + "; mpc play")
     check_and_set_timer()
 
 def play_pause():

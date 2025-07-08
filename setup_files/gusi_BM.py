@@ -31,7 +31,7 @@ S3 = "https://server23644.streamplus.de/stream.mp3"
 stations = [S1, S2, S3]
 
 #---------- ANNOUNCEMENTS ORDER ----------#
-announcements = ["s1.mp3", "s2.mp3", "s3.mp3"]
+announcements = ["ann_s1.mp3", "ann_s2.mp3", "ann_s3.mp3"]
 
 #---------- DEFINITIONS ----------#
 

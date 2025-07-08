@@ -77,22 +77,22 @@ def check_and_set_timer():
 
 def play_station_1():
     print("Playing station 1")
-    os.system("mpc stop; mpc clear; mpc add s1.mp3; mpc add " + S1 + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_s1.mp3; mpc add " + S1 + "; mpc play")
     check_and_set_timer()
 
 def play_station_2():
     print("Playing station 2")
-    os.system("mpc stop; mpc clear; mpc add s2.mp3; mpc add " + S2 + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_s2.mp3; mpc add " + S2 + "; mpc play")
     check_and_set_timer()
 
 def play_station_3():
     print("Playing station 3")
-    os.system("mpc stop; mpc clear; mpc add s3.mp3; mpc add " + S3 + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_s3.mp3; mpc add " + S3 + "; mpc play")
     check_and_set_timer()
 
 def play_station_4():
     print("Playing station 4")
-    os.system("mpc stop; mpc clear; mpc add s4.mp3; mpc add " + S4 + "; mpc play")
+    os.system("mpc stop; mpc clear; mpc add ann_s4.mp3; mpc add " + S4 + "; mpc play")
     check_and_set_timer()
 
 def play_pause():

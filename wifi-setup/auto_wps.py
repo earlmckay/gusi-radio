@@ -22,7 +22,7 @@ def checkip():
 led.blink(on_time=0.3, off_time=0.3)
 subprocess.call(["mpc", "clear"])
 subprocess.call(["mpc", "repeat", "on"])
-subprocess.call(["mpc", "add", "wifi_ping.mp3"])
+subprocess.call(["mpc", "add", "setup_wps_ping.mp3"])
 subprocess.call(["mpc", "play"])
 
 print("STOP wpa_supplicant")
@@ -89,7 +89,7 @@ while connection_attempts < 4:
 
                 print("Success!")
                 subprocess.call(["mpc", "clear"])
-                subprocess.call(["mpc", "add", "wifi_wps_successful.mp3"])
+                subprocess.call(["mpc", "add", "setup_wps_success.mp3"])
                 subprocess.call(["mpc", "play"])
                 subprocess.call(["mpc", "repeat", "off"])
                 time.sleep(26)
@@ -105,7 +105,7 @@ else:
     print("Network is not up")
     print("IP address:", ip)
     subprocess.call(["mpc", "clear"])
-    subprocess.call(["mpc", "add", "wifi_wps_fail.mp3"])
+    subprocess.call(["mpc", "add", "setup_wps_failed.mp3"])
     subprocess.call(["mpc", "play"])
     subprocess.call(["mpc", "repeat", "off"])
     time.sleep(45)
